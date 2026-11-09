@@ -1,10 +1,951 @@
-<!doctype html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <title>Мой сайт</title>
-</head>
-<body>
-</body>
-  <h1>Сайт работает!</h1>
+<!DOCTYPE html>
+<html dir="ltr" lang="ru-ru">
+
+    <head>
+    <meta name="robots" content="noindex, nofollow">
+    <script src="js/stay-on-page.js"></script>
+    <script>
+    /* Копия для A/B-теста: не шлём события и метрики в TravelLine от имени отеля */
+    (function(){
+      var BLOCK=/tlintegration\.(ru|com)\/(ibe\/(Metric|event)\/|ai-chat|AiChatButtonWidgetApi)|mc\.yandex\./i;
+      var f=window.fetch; window.fetch=function(i,o){var u=typeof i==='string'?i:(i&&i.url)||'';
+        return BLOCK.test(u)?Promise.resolve(new Response('{}',{status:200,headers:{'Content-Type':'application/json'}})):f.apply(this,arguments);};
+      var op=XMLHttpRequest.prototype.open, sd=XMLHttpRequest.prototype.send;
+      XMLHttpRequest.prototype.open=function(m,u){this.__b=BLOCK.test(String(u));return op.apply(this,arguments);};
+      XMLHttpRequest.prototype.send=function(){if(this.__b){return;}return sd.apply(this,arguments);};
+      if(navigator.sendBeacon){var sb=navigator.sendBeacon.bind(navigator);navigator.sendBeacon=function(u,d){return BLOCK.test(String(u))?true:sb(u,d);};}
+    })();
+    </script><title>Good Hotel Нижний Новгород - официальный сайт отеля</title><meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta property="og:title" content="Good Hotel Нижний Новгород - официальный сайт отеля"><meta property="og:type" content="website">
+        <meta property="og:image:alt" content="Good Hotel Нижний Новгород"><meta property="og:locale" content="ru_RU"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Good Hotel Нижний Новгород - официальный сайт отеля">
+    <meta name="twitter:image:alt" content="Good Hotel Нижний Новгород"><link rel='stylesheet' href='css/style.css?r=1793886818' type='text/css' media='all' /><link rel='stylesheet' href='css/variables.css?r=1793886818' type='text/css' media='all' /><link rel="shortcut icon" type="image/svg+xml" href="img/good-hotel-favicon.svg">
+
+
+
+
+
+
+
+
+
+<script
+    id="json-data"
+    style="display: none"
+    type="application/ld+json"
+    data-hotel-name="Good Hotel Нижний Новгород"
+    data-locale="ru-ru"
+    data-language-currency="RUB"
+    data-currency="RUB"
+>
+    {"providerId":"17687","themeName":"Avenue","integrationUrls":["ru-ibe.tlintegration.ru","ibe.tlintegration.ru","ibe.tlintegration.com"],"defaultLocale":"ru-ru","isApartmentMode":false,"areCookiesEnabled":true,"brand":"TL","yandexMetrics":[],"yandexMetricsWebVisorTrustedDomains":["ru-ibe.tlintegration.ru","ibe.tlintegration.ru","ibe.tlintegration.com"],"isPrivateAnalyticsEnabled":false}
+</script></head>
+
+    <body class="home"><div id="cookie-notification" class="cookie-notification cookie-notification_hidden cookie-notification_bottom">
+    <p class="cookies-common__text">Этот сайт использует файлы cookie, чтобы улучшить работу сайта и ваш опыт взаимодействия с ним. Нажмите "Принять все", чтобы согласиться с использованием всех файлов cookie, или "Настроить cookie", чтобы управлять своими предпочтениями. Для получения дополнительной информации ознакомьтесь с <a href="#" class="link cookies-common__link">Политикой конфиденциальности файлов cookie.</a></p>
+    <div class="cookie-notification__buttons">
+        <button class="cookies-common__button_primary" id="accept-all-cookies-notification-button">ПРИНЯТЬ ВСЕ</button>
+        <button class="cookies-common__button_secondary" id="change-cookies-settings-button">НАСТРОИТЬ COOKIE</button>
+    </div>
+</div><div class="cookie-settings-popup__container cookies-settings-popup_hidden" id="cookies-form">
+    <div class="cookies-settings-popup__blackout"></div>
+
+    <form class="cookies-settings-popup">
+        <div class="cookies-settings-popup__header">
+            <b class="cookies-settings-popup__header-title">О файлах «Cookie»</b>
+            <i class="icon-close cookies-settings-popup__header-close-button" id="close-cookies-settings-button"></i>
+        </div>
+
+        <div class="cookies-settings-popup__content">
+            <p class="cookies-common__text">Чтобы продолжить использование веб-сайта, вам необходимо выбрать категории файлов cookie, использование которых разрешаете, и нажать «Подтвердить выбор». Вы также можете "Принять все". Просматривайте описание категорий файлов cookie, чтобы получить более подробную информацию о каждой из них. Для получения дополнительной информации ознакомьтесь с <a href="#" class="link cookies-common__link">Политикой использования файлов cookie.</a></p>
+
+            <ul class="cookies-settings-popup__content-cookie-list">
+                <li class="cookies-settings-popup__content-cookie">
+                    <div class="cookies-settings-popup__content-cookie-header">
+                        <div class="cookies-settings-popup__content-cookie-header-title">
+                            <i class="icon-arrow5 cookies-settings-popup__content-cookie-header-icon"></i>
+                            <p>СТРОГО НЕОБХОДИМЫЕ COOKIE</p>
+                        </div><label class="switch"id="requiredCookiesSwitchId">
+    <input type="checkbox"disabled checked >
+    <span class="switch-slider"></span>
+</label></div>
+                    <div class="cookies-settings-popup__content-cookie-description-wrapper">
+                        <p class="cookies-settings-popup__content-cookie-description">Эти файлы cookie необходимы для функционирования веб-сайта и не могут быть отключены. Они позволяют использовать основные функции веб-сайта, такие как бронирование проживания и безопасный вход в систему. Эти Файлы cookie не хранят личную информацию и не позволяет идентифицировать пользователя.</p>
+                    </div>
+                </li>
+                <li class="cookies-settings-popup__content-cookie">
+                    <div class="cookies-settings-popup__content-cookie-header">
+                        <div class="cookies-settings-popup__content-cookie-header-title">
+                            <i class="icon-arrow5 cookies-settings-popup__content-cookie-header-icon"></i>
+                            <p>COOKIE ПРОИЗВОДИТЕЛЬНОСТИ</p>
+                        </div><label class="switch"id="performanceCookiesSwitchId">
+    <input type="checkbox">
+    <span class="switch-slider"></span>
+</label></div>
+                    <div class="cookies-settings-popup__content-cookie-description-wrapper">
+                        <p class="cookies-settings-popup__content-cookie-description">Эти файлы cookie позволяют подсчитывать посещения и источники трафика, чтобы измерять и улучшать производительность сайта. Они помогают узнать, какие страницы наиболее и наименее популярны, и увидеть, как посетители перемещаются по сайту. Вся информация, которую собирают эти файлы cookie, агрегируется и, следовательно, анонимна.</p>
+                    </div>
+                </li>
+                <li class="cookies-settings-popup__content-cookie">
+                    <div class="cookies-settings-popup__content-cookie-header">
+                        <div class="cookies-settings-popup__content-cookie-header-title">
+                            <i class="icon-arrow5 cookies-settings-popup__content-cookie-header-icon"></i>
+                            <p>ФУНКЦИОНАЛЬНЫЕ COOKIE</p>
+                        </div><label class="switch"id="functionalCookiesId">
+    <input type="checkbox">
+    <span class="switch-slider"></span>
+</label></div>
+                    <div class="cookies-settings-popup__content-cookie-description-wrapper">
+                        <p class="cookies-settings-popup__content-cookie-description">Функциональные файлы cookie позволяют веб-сайту запоминать ваши предпочтения. В результате можно персонализировать ваш опыт. Например, файлы cookie помогают вам легче перемещаться по сайту, запоминая ваши языковые предпочтения.</p>
+                    </div>
+                </li>
+                <li class="cookies-settings-popup__content-cookie">
+                    <div class="cookies-settings-popup__content-cookie-header">
+                        <div class="cookies-settings-popup__content-cookie-header-title">
+                            <i class="icon-arrow5 cookies-settings-popup__content-cookie-header-icon"></i>
+                            <p>РЕКЛАМНЫЕ COOKIE</p>
+                        </div><label class="switch"id="adCookiesId">
+    <input type="checkbox">
+    <span class="switch-slider"></span>
+</label></div>
+                    <div class="cookies-settings-popup__content-cookie-description-wrapper">
+                        <p class="cookies-settings-popup__content-cookie-description">Рекламные файлы cookie позволяют предоставлять персонализированную рекламу или маркетинговый контент. Они не хранят личную информацию, а основаны на уникальной идентификации вашего браузера и интернет-устройства.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="cookies-settings-popup__footer">
+            <button class="cookies-common__button_primary" id="accept-all-cookies-button">ПРИНЯТЬ ВСЕ</button>
+            <button class="cookies-common__button_secondary" id="accept-cookies-button">ПОДТВЕРДИТЬ ВЫБОР</button>
+        </div>
+
+    </form>
+</div>
+<div class="content">
+            
+
+
+<div class="header__wrapper header__wrapper_home">
+
+    <header class="header"
+            data-fixed="true"
+    >
+        <div class="header__container header__container_base">
+            <div class="header__container_base header__container_base-content">
+                <div class="header__content">
+                    <div class="address address_header">
+                        <i class="icon-inmap1 address__icon"></i>
+                        <a class="address__link" href="#">
+                            <span class="address__text">
+    Нижегородская область, г. Нижний Новгород, ул. Максима Горького, д. 252.
+</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="header__container">
+                    
+                        <a class="account__button account__button_header"
+   href="#">
+
+    <i class="account__button_header-icon icon-avatar"></i>
+    <span class="account__button_header-text">Личный кабинет</span>
+</a>
+                    
+                    
+                </div>
+            </div>
+        </div>
+        <div class="header__container header__container_overlay header__container_overlay_home">
+            <div class="header__container_overlay-content">
+                <a class="logo" href="#">
+                
+                    <img class="logo__image" src="img/good-hotel-logo.svg">
+                
+                </a>
+
+                <div class="header__menu"><nav class="menu ">
+    <ul class="menu__list"><li class="menu__item menu__button">
+                    <a class="menu__link"
+                       href="#">ОБ ОТЕЛЕ</a>
+                </li><li class="menu__item menu__button">
+                    <a class="menu__link"
+                       href="#" onclick="sendEvent('click', 'Avenue', 'MENU_ROOMS');">ПРОЖИВАНИЕ</a>
+                </li><li class="menu__item menu__button">
+                    <a class="menu__link"
+                       href="#">СПЕЦПРЕДЛОЖЕНИЯ</a>
+                </li><li class="menu__item menu__button">
+                    <a class="menu__link"
+                       href="#">КОНТАКТЫ</a>
+                </li><li class="menu__item menu__button menu__item_booking">
+                    <a class="menu__link"
+                       href="#" onclick="sendEvent('click', 'Avenue', 'MENU_BOOKING');">БРОНИРОВАНИЕ</a>
+                </li><a class="account__button account__button_menu"
+   href="#">
+
+    <i class="account__button_menu-icon icon-avatar"></i>
+    <span class="account__button_menu-text">ЛИЧНЫЙ КАБИНЕТ</span>
+</a></ul>
+</nav>
+
+<div class="button button_menu js-button-menu">
+                        <div class="button__content">
+                            <i class="button_menu__item_inactive icon-menu1 icon"></i>
+                            <span class="button_menu__item_inactive button__text">МЕНЮ</span>
+                            <i class="button_menu__item_active icon-close icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <a class="button button_menu-booking"
+                   href="#"
+                onClick="sendEvent('click', 'Avenue', 'MENU_BOOKING')">
+                    <i class="icon-bell icon"></i>
+                    <span class="button_menu-booking-text">ЗАБРОНИРОВАТЬ</span>
+                </a>
+            </div>
+
+        </div>
+        
+
+
+
+
+
+
+
+<div class="lang__popup js-lang__popup">
+    <div class="lang__modal_wrapper js-lang__modal">
+        <ul class="lang__columns">
+            <div class="lang__columns_header js-lang__header">
+                <span>Выбор языка</span>
+                <i class="icon-close lang__icon_close js-lang__close"></i>
+            </div>
+            <div class="lang__columns_content js-lang__columns">
+                
+                    <li class="lang__column">
+                        <ul class="lang__list">
+                            
+                            
+                                <li class="lang__item lang__item_current"><div class="lang__link lang__link_selected">
+                <i class="lang__flag lang__flag_ru-RU"></i>
+                <span class="lang__name">РУССКИЙ</span>
+            </div></li>
+                            
+                        </ul>
+                    </li>
+                
+            </div>
+        </ul>
+    </div>
+</div>
+
+    </header>
+</div>
+            <div class="slider slider_main">
+    <div class="slider__list slick-slider slick-slider_main"><div class="slider__item"><img class="slider__item-image" src="img/2141746d0f37ceac.webp" ></div><div class="slider__item"><img class="slider__item-image" src="img/dd92221338d188c4.webp" ></div><div class="slider__item"><img class="slider__item-image" src="img/c22338cd6c259b33.webp" ></div><div class="slider__item"><img class="slider__item-image" src="img/5465163bb9ba2fd4.webp" ></div></div>
+</div>
+            
+
+
+
+
+    
+    
+    <div class="search-form search-form_home search-form_on-photo ">
+        
+<div id="tl-search-form">
+</div>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+
+
+    
+
+
+
+    
+
+
+
+
+    
+
+
+
+<script type="text/javascript">
+(async function(w) {
+    const config = {"adults":2,"baseUrl":"./","bookingSourceIdentifier":"","bookingSources":[],"buttonColor":"#1743EF","chatEnabled":false,"container":"tl-search-form","currency":"RUB","formLoaderUrls":["ru-ibe.tlintegration.ru","ibe.tlintegration.ru","ibe.tlintegration.com"],"hasNights":true,"integrationLoadedPath":["TL"],"integrationRootKey":"travelline","isDemo":false,"isPromoEnabled":false,"lang":"ru-ru","language":"ru","languageRegion":"","linkBasePath":"","nights":1,"promoAccessCode":"САЙТ","providerId":"17687","searchFormContextLanguage":"ru","searchFormProfile":"TL-EXPRESS.express-3-new-aa","showCurrencyControl":true,"smartWidgetToken":"","theme":"express-indigo","themeName":"Avenue","useCountryMap":false,"useInternetAccessMonitor":true};
+
+    function checkIsMobile() {
+        let check = false;
+        (function(a) {
+            if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) {
+                check = true;
+            }
+        })(navigator.userAgent || navigator.vendor || window.opera);
+        return check;
+    }
+
+    function getDefaultSource(currentConfig) {
+        let defaultSource = "";
+
+        if (checkIsMobile()) {
+            defaultSource = "BS-MOBILE_SITE";
+        } else if (currentConfig.bookingSourceIdentifier) {
+            defaultSource = currentConfig.bookingSourceIdentifier;
+        }
+
+        return defaultSource;
+    }
+
+    async function fetchUserCountry() {
+        const userCountryStorageKey = "userCountry";
+
+        try {
+            const userCountry = localStorage.getItem(userCountryStorageKey);
+            if (userCountry) {
+                return userCountry;
+            }
+
+            const response = await fetch("https://get.geojs.io/v1/ip/country.json")
+                .then((result) => result.json())
+                .then((json) => json.country_3);
+
+            localStorage.setItem(userCountryStorageKey, response);
+            return response;
+        } catch (error) {
+            return null;
+        }
+    }
+
+    async function getSourceByCountry(currentConfig) {
+        const country = await fetchUserCountry();
+
+        if (!country) {
+            return currentConfig.bookingSourceIdentifier || "";
+        }
+
+        const source = currentConfig.bookingSources.find((item) => item.countries.includes(country));
+        return source ? source.source : (currentConfig.bookingSourceIdentifier || "");
+    }
+
+    async function resolveBookingSource(currentConfig) {
+        if (currentConfig.useCountryMap) {
+            return await getSourceByCountry(currentConfig);
+        }
+
+        return getDefaultSource(currentConfig);
+    }
+
+    function submitHandler(currentConfig, url) {
+        if (currentConfig.isDemo) {
+            const urlParts = /^(?:\w+\:\/\/)?([^\/]+)(.*)/.exec(url);
+            return currentConfig.baseUrl + currentConfig.linkBasePath.substring(1) + urlParts[2];
+        }
+
+        try {
+            sendEvent("click", currentConfig.themeName, "SF_FIND_ROOMS_BUTTON");
+        } catch (error) {
+        }
+
+        const queryParams = url.split("?");
+        const urlParams = queryParams.length > 0 ? queryParams[queryParams.length - 1] : "";
+        return currentConfig.baseUrl + currentConfig.lang + "/booking?" + urlParams;
+    }
+
+    function completeHandler(currentConfig) {
+        if (currentConfig.themeName !== "NewTheme" || !currentConfig.buttonColor) {
+            return;
+        }
+
+        const searchFormElement = document.getElementById(currentConfig.container);
+        if (!searchFormElement) {
+            return;
+        }
+
+        const iframe = searchFormElement.querySelector("iframe");
+        if (!iframe || !iframe.contentDocument) {
+            return;
+        }
+
+        const submitButton = iframe.contentDocument.querySelector(".sfl-container .sf-controls-wrapper .sf-submit-button-container .sfl-submit-button");
+        if (submitButton) {
+            submitButton.style.backgroundColor = currentConfig.buttonColor;
+        }
+    }
+
+    function buildSearchFormCommand(currentConfig, bookingSource) {
+        const options = {
+            providers: [[currentConfig.providerId]],
+            container: currentConfig.container,
+            adults: String(currentConfig.adults),
+            source: bookingSource,
+            onsubmit: function(params, url) {
+                return submitHandler(currentConfig, url);
+            },
+            oncomplete: function() {
+                completeHandler(currentConfig);
+            }
+        };
+
+        if (currentConfig.isPromoEnabled && currentConfig.promoAccessCode) {
+            options.accessCode = currentConfig.promoAccessCode;
+        }
+
+        if (currentConfig.language) {
+            options.language = currentConfig.language;
+        }
+
+        if (currentConfig.languageRegion) {
+            options.languageRegion = currentConfig.languageRegion;
+        }
+
+        if (currentConfig.currency) {
+            options.currency = currentConfig.currency;
+        }
+
+        if (!currentConfig.showCurrencyControl) {
+            options.showCurrencyControl = false;
+        }
+
+        if (currentConfig.hasNights) {
+            options.nights = currentConfig.nights;
+        }
+
+        return ["embed", "search-form", options];
+    }
+
+    function buildInternetAccessMonitorCommand(currentConfig, bookingSource) {
+        const options = {
+            enabled: true,
+            provider: parseInt(currentConfig.providerId),
+            source: bookingSource,
+            theme: currentConfig.theme,
+            adults: String(currentConfig.adults),
+            language: currentConfig.language,
+            languageRegion: currentConfig.languageRegion,
+            currency: currentConfig.currency,
+        }
+
+        if (currentConfig.isPromoEnabled && currentConfig.promoAccessCode) {
+            options.accessCode = currentConfig.promoAccessCode;
+        }
+
+        if (!currentConfig.showCurrencyControl) {
+            options.showCurrencyControl = false;
+        }
+
+        return ["embed", "internet-access-monitor", options];
+    }
+
+    function buildCommands(currentConfig, bookingSource) {
+        const commands = [
+            [
+                "setContext",
+                currentConfig.searchFormProfile,
+                currentConfig.searchFormContextLanguage
+            ],
+            buildSearchFormCommand(currentConfig, bookingSource)
+        ];
+
+        if (currentConfig.smartWidgetToken) {
+            commands.push(["embed", "smart-widget", { key: currentConfig.smartWidgetToken }]);
+        }
+
+        commands.push([
+            "embed",
+            "ai-chat",
+            {
+                providerId: parseInt(currentConfig.providerId),
+                theme: currentConfig.theme,
+                widget: {
+                    enabled: currentConfig.chatEnabled
+                }
+            }
+        ]);
+
+        if (currentConfig.useInternetAccessMonitor) {
+            commands.push(buildInternetAccessMonitorCommand(currentConfig, bookingSource));
+        }
+
+        return commands;
+    }
+
+    function getOrCreateNestedObject(root, path) {
+        return path.reduce(function(current, key) {
+            if (!current[key] || typeof current[key] !== "object") {
+                current[key] = {};
+            }
+
+            return current[key];
+        }, root);
+    }
+
+    function getNestedValue(root, path) {
+        return path.reduce(function(current, key) {
+            if (!current) {
+                return undefined;
+            }
+
+            return current[key];
+        }, root);
+    }
+
+    function getIntegrationState(currentWindow, currentConfig) {
+        return getOrCreateNestedObject(currentWindow, [currentConfig.integrationRootKey, "integration"]);
+    }
+
+    function isIntegrationLoaded(currentWindow, currentConfig) {
+        return Boolean(getNestedValue(currentWindow, currentConfig.integrationLoadedPath));
+    }
+
+    function bootstrapIntegration(currentWindow, currentConfig, commands) {
+        const integrationState = getIntegrationState(currentWindow, currentConfig);
+        integrationState.__cq = integrationState.__cq ? integrationState.__cq.concat(commands) : commands;
+
+        if (integrationState.__loader) {
+            return;
+        }
+
+        integrationState.__loader = true;
+
+        const documentRef = currentWindow.document;
+        const rootElement = documentRef.getElementsByTagName("head")[0] || documentRef.getElementsByTagName("body")[0];
+
+        function loadNext(hosts) {
+            if (!hosts.length) {
+                return;
+            }
+
+            const script = documentRef.createElement("script");
+            script.type = "text/javascript";
+            script.async = true;
+            script.src = "https://" + hosts[0] + "/integration/loader.js";
+            script.onerror = script.onload = function() {
+                if (isIntegrationLoaded(currentWindow, currentConfig)) {
+                    return;
+                }
+
+                if (script.parentNode === rootElement) {
+                    rootElement.removeChild(script);
+                }
+
+                loadNext(hosts.slice(1));
+            };
+
+            rootElement.appendChild(script);
+        }
+
+        loadNext(currentConfig.formLoaderUrls);
+    }
+
+    const bookingSource = await resolveBookingSource(config);
+    const commands = buildCommands(config, bookingSource);
+    bootstrapIntegration(w, config, commands);
+})(window);
+</script>
+
+
+
+
+    </div>
+
+    
+
+
+            
+    <section class="about about_main" id="about">
+    <h1 class="about__title ">
+        <a class="link link_unstyled" href="#">Good Hotel Нижний Новгород - официальный сайт отеля</a>
+    </h1>
+    <div class="about__description">
+        <div class="text-with-html provider__description__text"><p><strong>Good Hotel Нижний Новгород</strong> расположен в историческом центре города, всего в нескольких минутах от главных достопримечательностей и в 1,7 км от Нижегородского кремля.</p><p>К услугам гостей современные комфортабельные номера с бесплатным Wi‑Fi, кондиционером, телевизором с плоским экраном и спутниковыми каналами. Каждый номер оборудован набором для приготовления чая и кофе, холодильником, сейфом, утюгом и гладильными принадлежностями. Собственная ванная комната оснащена душем, феном и туалетно-косметическими принадлежностями.</p><p>Стойка регистрации работает круглосуточно, обеспечивая комфортное размещение в любое время суток.</p><p>В уютном лобби-баре гости могут заказать напитки и легкие закуски. Ресторан отеля предлагает разнообразный завтрак «шведский стол», а также блюда европейской кухни в течение дня. Лобби-бар и ресторан открыты ежедневно до <strong>23:00</strong>.</p><p>Для поддержания привычного ритма во время путешествия гости могут бесплатно воспользоваться современным фитнес-залом, который работает круглосуточно на 4 этаже.</p><p>В пешей доступности от отеля расположен Нижегородский государственный академический театр оперы и балета, а также множество исторических и культурных достопримечательностей города.</p><p></p></div>
+        
+        <a href="#" class="provider__more_info_link about__more">Подробнее</a></div>
+</section>
+
+    <section class="rooms" id="rooms">
+        <h2 class="rooms__title">
+            <a class="link link_unstyled" href="#">Проживание</a>
+        </h2>
+        <div class="slider slider_category slider_rooms rooms__list-main">
+            <div class="slider__list slick-slider slick-slider_category"><div class="slider__item room">
+                    <div class="slider__item-image"><img class="gallery-cover" src="img/f4220c1aca7a2097.webp"  alt="room image"></div>
+                    <div class="slider__container">
+                        <div class="slider__item-info">
+                            <div class="room__info">
+                                <h3 class="room__title">
+                                    
+    Стандарт с двуспальной кроватью
+
+                                </h3>
+                                <p class="room__description">
+                                    
+    Номер категории "Стандарт" оборудован двуспальной кроватью (150х200).
+Комфортное решение для индивидуальных гостей и пар...
+
+                                </p>
+                                <a class="button button_room" href="#"
+                                onClick="sendEvent('click', 'Avenue', 'SLIDER_ROOMS_BUTTON')">
+                                    УЗНАТЬ ЦЕНУ
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="slider__item room">
+                    <div class="slider__item-image"><img class="gallery-cover" src="img/19c6322a5aeff432.webp"  alt="room image"></div>
+                    <div class="slider__container">
+                        <div class="slider__item-info">
+                            <div class="room__info">
+                                <h3 class="room__title">
+                                    
+    Стандарт с двумя односпальными кроватями
+
+                                </h3>
+                                <p class="room__description">
+                                    
+    Номер категории "Стандарт с двумя односпальными кроватями" оснащен двумя раздельными кроватями (120x200 см).
+Комфортное ...
+
+                                </p>
+                                <a class="button button_room" href="#"
+                                onClick="sendEvent('click', 'Avenue', 'SLIDER_ROOMS_BUTTON')">
+                                    УЗНАТЬ ЦЕНУ
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="slider__item room">
+                    <div class="slider__item-image"><img class="gallery-cover" src="img/8573660740d99c77.webp"  alt="room image"></div>
+                    <div class="slider__container">
+                        <div class="slider__item-info">
+                            <div class="room__info">
+                                <h3 class="room__title">
+                                    
+    Улучшенный с двуспальной кроватью и диваном
+
+                                </h3>
+                                <p class="room__description">
+                                    
+    Номер категории «Улучшенный стандарт» оборудован двуспальной кроватью (150х200) и диваном, который может использоваться ...
+
+                                </p>
+                                <a class="button button_room" href="#"
+                                onClick="sendEvent('click', 'Avenue', 'SLIDER_ROOMS_BUTTON')">
+                                    УЗНАТЬ ЦЕНУ
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="slider__item room">
+                    <div class="slider__item-image"><img class="gallery-cover" src="img/9a80662de75a5e07.webp"  alt="room image"></div>
+                    <div class="slider__container">
+                        <div class="slider__item-info">
+                            <div class="room__info">
+                                <h3 class="room__title">
+                                    
+    Семейный двухкомнатный
+
+                                </h3>
+                                <p class="room__description">
+                                    
+    Номер категории "Семейный двухкомнатный" оснащен двуспальной кроватью (150x200), отдельной гостиной зоной и двумя ванным...
+
+                                </p>
+                                <a class="button button_room" href="#"
+                                onClick="sendEvent('click', 'Avenue', 'SLIDER_ROOMS_BUTTON')">
+                                    УЗНАТЬ ЦЕНУ
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="slider__item room">
+                    <div class="slider__item-image"><img class="gallery-cover" src="img/c5ed3b7a34f2eef5.webp"  alt="room image"></div>
+                    <div class="slider__container">
+                        <div class="slider__item-info">
+                            <div class="room__info">
+                                <h3 class="room__title">
+                                    
+    Стандарт для лиц с ограниченными возможностями
+
+                                </h3>
+                                <p class="room__description">
+                                    
+    Номер оснащен двуспальной кроватью (Queen Size, 150x200 см) и полностью оборудованной ванной комнатой с поручням...
+
+                                </p>
+                                <a class="button button_room" href="#"
+                                onClick="sendEvent('click', 'Avenue', 'SLIDER_ROOMS_BUTTON')">
+                                    УЗНАТЬ ЦЕНУ
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div></div>
+        </div>
+    </section>
+    
+    <section class="special-offers slider_special-offers special-offers_home">
+        <h2 class="special-offers__title">
+            <a class="link link_unstyled" href="#">Спецпредложения</a>
+        </h2>
+        <div class="special-offers__list special-offers__list-main slider__list slick-slider_category"><div class="special-offers__item special-offer special-offer_home special-offer_left ">
+                    <div class="special-offer__image"><img class="gallery-cover" src="img/nophoto.png"  alt="Special offer image"></div>
+                    <div class="special-offer__container">
+                        <div class="special-offer__info">
+                            <div class="special-offer__info-wrap">
+                                <h3 class="special-offer__title">
+                                    
+    Тариф с завтраком
+
+                                </h3>
+                                <p class="special-offer__description">
+                                    
+                                    
+    Завтрак включен в стоимость проживания. Действуют привилегии для участников программы лояльности Good Hotel (номер уч...
+
+                                </p>
+                                <a class="button button_room" href="#"
+                                onClick="sendEvent('click', 'Avenue', 'SLIDER_SPECIAL_OFFERS_BUTTON')">
+                                    ЗАБРОНИРОВАТЬ
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div><div class="special-offers__item special-offer special-offer_home special-offer_right ">
+                    <div class="special-offer__image"><img class="gallery-cover" src="img/005a9fde62fdb25c.webp"  alt="Special offer image"></div>
+                    <div class="special-offer__container">
+                        <div class="special-offer__info">
+                            <div class="special-offer__info-wrap">
+                                <h3 class="special-offer__title">
+                                    
+    Тариф «Романтик»
+
+                                </h3>
+                                <p class="special-offer__description">
+                                    
+                                    
+    Подарите себе особенное время вдвоём и создайте незабываемые воспоминания в атмосфере уюта и романтики.
+В рамках тарифа ...
+
+                                </p>
+                                <a class="button button_room" href="#"
+                                onClick="sendEvent('click', 'Avenue', 'SLIDER_SPECIAL_OFFERS_BUTTON')">
+                                    ЗАБРОНИРОВАТЬ
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div><div class="special-offers__item special-offer special-offer_home special-offer_left special-offer_hidden">
+                    <div class="special-offer__image"><img class="gallery-cover" src="img/0940faa218f4fa1f.webp"  alt="Special offer image"></div>
+                    <div class="special-offer__container">
+                        <div class="special-offer__info">
+                            <div class="special-offer__info-wrap">
+                                <h3 class="special-offer__title">
+                                    
+    Воскресная перезагрузка
+
+                                </h3>
+                                <p class="special-offer__description">
+                                    
+                                    
+    Подарите себе еще один выходной перед новой неделей.
+Тариф «Воскресная перезагрузка» создан для тех, кто хочет отвлечься...
+
+                                </p>
+                                <a class="button button_room" href="#"
+                                onClick="sendEvent('click', 'Avenue', 'SLIDER_SPECIAL_OFFERS_BUTTON')">
+                                    ЗАБРОНИРОВАТЬ
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div><div class="special-offers__item special-offer special-offer_home special-offer_right special-offer_hidden">
+                    <div class="special-offer__image"><img class="gallery-cover" src="img/nophoto.png"  alt="Special offer image"></div>
+                    <div class="special-offer__container">
+                        <div class="special-offer__info">
+                            <div class="special-offer__info-wrap">
+                                <h3 class="special-offer__title">
+                                    
+    Выгодный тариф
+
+                                </h3>
+                                <p class="special-offer__description">
+                                    
+                                    
+    Выгодный тариф — для тех, кто уверен в своей поездке.
+Забронируйте проживание заранее и получите скидку от 10 до 15% от ...
+
+                                </p>
+                                <a class="button button_room" href="#"
+                                onClick="sendEvent('click', 'Avenue', 'SLIDER_SPECIAL_OFFERS_BUTTON')">
+                                    ЗАБРОНИРОВАТЬ
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div></div>
+    </section>
+    
+    
+
+            <footer class="footer  footer_home">
+    
+    
+    <div class="social-networks">
+        <div class="social-networks__title">
+            <span class="social-networks__title_full">СЛЕДИТЕ ЗА НАМИ В СОЦИАЛЬНЫХ СЕТЯХ</span>
+            <span class="social-networks__title_short">СОЦИАЛЬНЫЕ СЕТИ</span>
+        </div>
+        
+        <a href="#" target="_blank" class="social-networks__item social-networks__item_vk-2020">
+            <i class="icon-vk-2020 social-networks__icon"></i>
+        </a>
+        
+    </div>
+    
+    
+    <div class="footer__info">
+        
+            <div class="footer__contacts">
+                <h2 class="footer__title">
+                    КОНТАКТЫ
+                </h2>
+                <div class="contacts contacts_footer">
+                    <ul class="contacts__items">
+                        <li class="contacts__item address address_footer">
+                                <span class="contacts__title_small">
+                                    Адрес:
+                                </span>
+                            <a class="address__link" href="#">
+                                
+    Нижегородская область, г. Нижний Новгород, ул. Максима Горького, д. 252.
+
+                            </a>
+                        </li>
+                        
+                        
+                            <li class="contacts__item phone">
+                                <span class="contacts__title_small">
+                                    Телефон:
+                                </span>
+                                <ul class="phone__list">
+                                    <li class="phone__item">
+                                        <a href="tel:&#43;78314223150" class="phone__link">
+    
+    <span class="phone__text">
+        <span class="phone__number">&#43;7 (831) 422 31 50</span>
+        
+        
+            <span class="phone__description">многоканальный</span>
+        
+    </span>
+</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        
+                        <li class="contacts__item messenger messenger_home">
+                            
+                        </li>
+                        
+                        
+                            <li class="contacts__item email email_footer">
+                                <span class="contacts__title_small">
+                                    Email:
+                                </span>
+                                <a class="email__link" href="mailto:info@good-hotel.ru">
+    
+    <span class="email__text">
+        <span class="email__mail">info@good-hotel.ru</span>
+          
+          
+    </span>
+</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        
+            <div class="footer__map map ">
+                <script id="json-map" style="display: none" type="application/ld+json">
+    {"mapType":1,"hotelName":"Good Hotel \u041D\u0438\u0436\u043D\u0438\u0439 \u041D\u043E\u0432\u0433\u043E\u0440\u043E\u0434","addresses":[{"code":"0","latitude":56.320474,"longitude":44.029877,"address":"\u041D\u0438\u0436\u0435\u0433\u043E\u0440\u043E\u0434\u0441\u043A\u0430\u044F \u043E\u0431\u043B\u0430\u0441\u0442\u044C, \u0433. \u041D\u0438\u0436\u043D\u0438\u0439 \u041D\u043E\u0432\u0433\u043E\u0440\u043E\u0434, \u0443\u043B. \u041C\u0430\u043A\u0441\u0438\u043C\u0430 \u0413\u043E\u0440\u044C\u043A\u043E\u0433\u043E, \u0434. 252."}],"localeCode":"ru_RU"}
+</script>
+<div dir="ltr" id="map-container" class="map__container"></div>
+            </div>
+        
+    </div>
+    
+
+    
+    
+    
+    <div class="footer__bottom">
+        
+        <div class="footer__item footer__copyright">
+            <div class="footer__copyright_hotel">© Good Hotel Нижний Новгород</div>
+            <div class="footer__copyright_official">2026, Официальный сайт</div>
+            
+        </div>
+
+        
+
+
+
+
+
+
+
+    </div>
+</footer>
+        </div>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT&#43;Sans%7cOpen&#43;Sans" /><link rel='stylesheet' href='js/vendor/fancybox/dist/jquery.fancybox.min.css' type='text/css' media='all' />
+
+<script type='text/javascript' src='js/jquery.min.js'></script>
+<script type='text/javascript' src='js/vendor/slick/slick.min.js?r=4.7.2'></script>
+<script type='text/javascript' src='js/vendor/fancybox/dist/jquery.fancybox.min.js'></script>
+<script type='text/javascript' src='js/main.min.js?r=1793886818'></script><script>
+    window.translations = {
+        from: 'От {price}',
+        book_now: 'ЗАБРОНИРОВАТЬ',
+        map_directions: 'Как добраться'
+    }
+</script>
+<script>
+    globalThis.hotelWebMCPOptions = {
+        hotelCode: "17687"
+    };
+</script>
+<script type="module" src="webmcp-universal.js"></script>
+
+
+    
+    </body>
+
 </html>
