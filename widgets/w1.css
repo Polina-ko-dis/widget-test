@@ -1,0 +1,87 @@
+/* Виджет 1 (вариант А): стеклянная капсула справа с прыгающей иконкой.
+   Десктоп: выезжает по наведению. Мобилка/тач: открывается тапом по иконке.
+   Высота одинаковая в свёрнутом и раскрытом виде. Источник — холст, Widget1 / Widget1Mobile. */
+.gw1 {
+  --gw1-accent: rgb(var(--color-bg-buttons, 23, 67, 239));
+  --peek: 106px;
+  position: fixed; right: 0; top: 58%; z-index: 9000;
+  display: flex; align-items: center; gap: 14px; width: max-content;
+  padding: 12px 24px 12px 20px;
+  background: linear-gradient(135deg, rgba(255,255,255,.30) 0%, rgba(255,255,255,.10) 100%), rgba(28,32,48,.34);
+  -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255,255,255,.45); border-right: none; border-radius: 48px 0 0 48px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 12px 40px rgba(10,14,30,.25);
+  color: #fff; font-family: 'Open Sans', 'PT Sans', Tahoma, sans-serif;
+  transform: translate(calc(100% - var(--peek)), -50%);
+  transition: transform .5s cubic-bezier(.22,.9,.3,1);
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.gw1.is-open { transform: translate(0, -50%); cursor: default; }
+@media (hover: hover) { .gw1:hover { transform: translate(0, -50%); cursor: default; } }
+
+.gw1__toggle {
+  flex: 0 0 72px; width: 72px; height: 80px; padding: 0; margin: 0; border: 0; background: none;
+  position: relative; display: flex; align-items: flex-end; justify-content: center; cursor: pointer;
+}
+.gw1__shadow {
+  position: absolute; left: 14px; right: 14px; bottom: 2px; height: 7px; border-radius: 999px;
+  background: #0A0E1E44; filter: blur(3px);
+  animation: gw1-shadow 2.4s cubic-bezier(.3,.6,.4,1) 1s infinite;
+}
+.gw1__img {
+  position: relative; width: 72px; height: 72px; display: block; transform-origin: 50% 100%;
+  animation: gw1-bounce 2.4s cubic-bezier(.3,.6,.4,1) 1s infinite;
+}
+.gw1__body {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
+  opacity: 0; transform: translateY(6px); pointer-events: none;
+  transition: opacity .25s ease, transform .35s ease;
+}
+.gw1.is-open .gw1__body { opacity: 1; transform: none; pointer-events: auto; transition-delay: .15s; }
+@media (hover: hover) { .gw1:hover .gw1__body { opacity: 1; transform: none; pointer-events: auto; transition-delay: .15s; } }
+.gw1__title { margin: 0; font-size: 20px; line-height: 26px; font-weight: 300; white-space: nowrap; text-shadow: 0 1px 8px rgba(0,0,0,.18); }
+.gw1__btn {
+  display: inline-flex; align-items: center; gap: 10px; height: 40px; padding: 0 18px 0 20px;
+  background: var(--gw1-accent); color: #fff !important; font-size: 14px; font-weight: 600; text-decoration: none;
+  border-radius: 999px; box-shadow: 0 4px 14px rgba(0,0,0,.18); transition: filter .2s, transform .2s;
+}
+.gw1__btn:hover { filter: brightness(1.12); }
+.gw1__btn:active { transform: scale(.97); }
+.gw1__btn svg { width: 16px; height: 16px; transition: transform .2s; }
+.gw1__btn:hover svg { transform: translateX(3px); }
+
+.gw1:not(.is-open) { animation: gw1-peek 7s ease-in-out 2.5s infinite; }
+@media (hover: hover) { .gw1:hover { animation: none; } }
+@keyframes gw1-peek {
+  0%, 84%, 100% { transform: translate(calc(100% - var(--peek)), -50%); }
+  89%           { transform: translate(calc(100% - var(--peek) - 14px), -50%); }
+  94%           { transform: translate(calc(100% - var(--peek) + 2px), -50%); }
+}
+@keyframes gw1-bounce {
+  0%, 62%, 100% { transform: translateY(0) scale(1, 1); }
+  8%  { transform: translateY(0) scale(1.1, .88); }
+  24% { transform: translateY(-14px) scale(.94, 1.08); }
+  38% { transform: translateY(0) scale(1.08, .92); }
+  46% { transform: translateY(-5px) scale(.98, 1.02); }
+  54% { transform: translateY(0) scale(1, 1); }
+}
+@keyframes gw1-shadow {
+  0%, 8%, 38%, 54%, 62%, 100% { transform: scaleX(1); opacity: .35; }
+  24% { transform: scaleX(.6); opacity: .15; }
+  46% { transform: scaleX(.85); opacity: .28; }
+}
+
+/* Мобилка (как Widget1Mobile): на фото, выше формы бронирования (на телефоне она посередине экрана) */
+@media (max-width: 600px) {
+  .gw1 { --peek: 82px; top: 40%; gap: 10px; padding: 10px 16px; border-radius: 44px 0 0 44px; box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 10px 30px rgba(10,14,30,.25); }
+  .gw1__toggle { flex-basis: 56px; width: 56px; height: 64px; }
+  .gw1__shadow { left: 11px; right: 11px; height: 6px; }
+  .gw1__img { width: 56px; height: 56px; }
+  .gw1__body { gap: 8px; }
+  .gw1__title { font-size: 18px; line-height: 24px; }
+  .gw1__btn { height: 44px; gap: 8px; padding: 0 16px 0 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gw1, .gw1__body { transition: none; }
+  .gw1, .gw1__img, .gw1__shadow { animation: none !important; }
+}

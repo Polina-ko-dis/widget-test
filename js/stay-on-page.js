@@ -31,6 +31,11 @@
     doc.addEventListener('click', function (e) {
       var el = e.target && e.target.closest ? e.target.closest('a,button,[role=button]') : null;
       if (!el) return;
+      // Исключение: ссылки виджетов (data-allow-nav) ведут на витрину услуг
+      if (el.hasAttribute('data-allow-nav')) {
+        window.top.__allowNavTo = el.href;
+        return;
+      }
       var href = el.tagName === 'A' ? el.getAttribute('href') : null;
       var text = (el.innerText || el.textContent || '').trim();
       if (isLeaving(href, win) || (el.tagName === 'A' && el.target && href && href.charAt(0) !== '#')) {
@@ -61,6 +66,7 @@
   if (window.navigation && window.navigation.addEventListener) {
     window.navigation.addEventListener('navigate', function (e) {
       if (e.hashChange || e.downloadRequest) return;
+      if (window.__allowNavTo && e.destination.url === window.__allowNavTo) return;
       if (isLeaving(e.destination.url, window) && e.cancelable) e.preventDefault();
     });
   }

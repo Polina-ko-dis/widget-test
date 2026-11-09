@@ -1,0 +1,83 @@
+/* Виджет 2 (вариант Б): белая стеклянная капля — круг с каруселью иконок разделов перетекает в карточку.
+   Форма — icons/w2-shape.svg (маска стекла), w2-shadow.svg (тень), w2-outline-blue.svg (обводка).
+   Десктоп: центр на уровне кнопки «Найти» при загрузке, дальше position: fixed — при скролле остаётся там.
+   Свёрнутый: виден круг и начало перемычки (128 px), по наведению/тапу выезжает карточка. Источник — холст, Widget2. */
+.gw2-pos { position: fixed; right: 0; top: 800px; z-index: 9000; width: 480px; height: 120px; transform-origin: 100% 50%; }
+.gw2 {
+  --gw2-accent: rgb(var(--color-bg-buttons, 23, 67, 239));
+  position: absolute; inset: 0; width: 480px; height: 120px;
+  color: #15161A; font-family: 'Open Sans', 'PT Sans', Tahoma, sans-serif;
+  transform: translate(352px, -50%); transition: transform .55s cubic-bezier(.22,.9,.3,1);
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.gw2.is-open { transform: translate(0, -50%); cursor: default; }
+@media (hover: hover) { .gw2:hover { transform: translate(0, -50%); cursor: default; } }
+.gw2__shadow { position: absolute; left: 0; top: 10px; width: 480px; height: 120px; filter: blur(14px); opacity: .35; pointer-events: none; }
+.gw2__glass {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.40) 0%, rgba(255,255,255,.20) 100%), rgba(255,255,255,.46);
+  -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
+  -webkit-mask: url(icons/w2-shape.svg) no-repeat 0 0 / 480px 120px; mask: url(icons/w2-shape.svg) no-repeat 0 0 / 480px 120px;
+}
+.gw2__outline { position: absolute; left: -1px; top: -1px; width: 482px; height: 122px; pointer-events: none; }
+.gw2__window {
+  position: absolute; left: 0; top: 0; width: 120px; height: 120px; border-radius: 999px; overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 26%, #000 74%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0, #000 26%, #000 74%, transparent 100%);
+}
+.gw2__strip { list-style: none; margin: 0; padding: 0; transform: translateY(-54px); animation: gw2-scroll 18s cubic-bezier(.65,0,.35,1) infinite; }
+.gw2__strip li { height: 76px; display: flex; align-items: center; justify-content: center; }
+.gw2__strip img { width: 64px; height: 64px; display: block; filter: drop-shadow(0 6px 6px rgba(16,40,120,.28)); }
+.gw2__body {
+  position: absolute; left: 204px; top: 0; height: 120px;
+  display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 10px;
+  opacity: 0; transform: translateX(10px); pointer-events: none; transition: opacity .25s ease, transform .35s ease;
+}
+.gw2.is-open .gw2__body { opacity: 1; transform: none; pointer-events: auto; transition-delay: .18s; }
+@media (hover: hover) { .gw2:hover .gw2__body { opacity: 1; transform: none; pointer-events: auto; transition-delay: .18s; } }
+.gw2__title { margin: 0; font-size: 20px; line-height: 26px; font-weight: 400; white-space: nowrap; }
+.gw2__btn {
+  display: inline-flex; align-items: center; gap: 10px; height: 40px; padding: 0 18px 0 20px;
+  background: var(--gw2-accent); color: #fff !important; font-size: 14px; font-weight: 600; text-decoration: none;
+  border-radius: 999px; box-shadow: 0 4px 14px rgba(0,0,0,.18); transition: filter .2s, transform .2s;
+}
+.gw2__btn:hover { filter: brightness(1.12); }
+.gw2__btn:active { transform: scale(.97); }
+.gw2__btn svg { width: 16px; height: 16px; transition: transform .2s; }
+.gw2__btn:hover svg { transform: translateX(3px); }
+.gw2:not(.is-open) { animation: gw2-peek 7s ease-in-out 2.5s infinite; }
+@media (hover: hover) { .gw2:hover { animation: none; } }
+@keyframes gw2-peek {
+  0%, 84%, 100% { transform: translate(352px, -50%); }
+  89%           { transform: translate(338px, -50%); }
+  94%           { transform: translate(354px, -50%); }
+}
+@keyframes gw2-scroll {
+  0.000% { transform: translateY(-54px); }
+  7.200% { transform: translateY(-54px); }
+  10.000% { transform: translateY(-130px); }
+  17.200% { transform: translateY(-130px); }
+  20.000% { transform: translateY(-206px); }
+  27.200% { transform: translateY(-206px); }
+  30.000% { transform: translateY(-282px); }
+  37.200% { transform: translateY(-282px); }
+  40.000% { transform: translateY(-358px); }
+  47.200% { transform: translateY(-358px); }
+  50.000% { transform: translateY(-434px); }
+  57.200% { transform: translateY(-434px); }
+  60.000% { transform: translateY(-510px); }
+  67.200% { transform: translateY(-510px); }
+  70.000% { transform: translateY(-586px); }
+  77.200% { transform: translateY(-586px); }
+  80.000% { transform: translateY(-662px); }
+  87.200% { transform: translateY(-662px); }
+  90.000% { transform: translateY(-738px); }
+  97.200% { transform: translateY(-738px); }
+  100.000% { transform: translateY(-814px); }
+}
+/* Мобилка: макета ещё нет — тот же виджет в масштабе 0,74 (раскрытый влезает в 375 px), на фото, выше формы бронирования */
+@media (max-width: 600px) { .gw2-pos { top: 40% !important; transform: scale(.74); } }
+@media (prefers-reduced-motion: reduce) {
+  .gw2, .gw2__body { transition: none; }
+  .gw2, .gw2__strip { animation: none !important; }
+}
