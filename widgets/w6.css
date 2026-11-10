@@ -1,9 +1,10 @@
-/* Виджет Д (вариант Б с 2026-11-10): стеклянная карточка с превью услуг. Макет — холст, Widget6.dc.html. */
+/* Положение и размеры круга — по правкам Полины на холсте (карточка right 7 / top 456, круг 120 right 12 / top 541 в 1440×900).
+   Виджет Д (вариант Б с 2026-11-10): стеклянная карточка с превью услуг. Макет — холст, Widget6.dc.html. */
 /* Виджет Д: компактная стеклянная карточка справа (240 px) с превью услуг из витрины.
    Фото сменяются сами раз в 3,2 с (плавно, с лёгким наездом), сверху — полоски прогресса, как в сторис.
    На фото — название и цена. Кнопка «Все услуги» — на витрину. Крестик сворачивает в капсулу у края
    (в ней крутятся те же фото), клик по капсуле — снова раскрывает. Наведение на фото — пауза. */
-.gw6{position:fixed;right:24px;top:max(96px,calc(50vh - 150px));z-index:9990;font-family:'Open Sans','PT Sans',Tahoma,sans-serif;width:240px;box-sizing:border-box;padding:12px;border-radius:24px;color:#15161A;
+.gw6{position:fixed;right:7px;top:max(96px,calc(50vh + 6px));z-index:9990;font-family:'Open Sans','PT Sans',Tahoma,sans-serif;width:240px;box-sizing:border-box;padding:12px;border-radius:24px;color:#15161A;
   background:linear-gradient(135deg,rgba(255,255,255,.72),rgba(255,255,255,.5));backdrop-filter:blur(20px) saturate(170%);-webkit-backdrop-filter:blur(20px) saturate(170%);
   border:1px solid rgba(255,255,255,.7);box-shadow:0 18px 50px rgba(10,20,60,.28),inset 0 1px 0 rgba(255,255,255,.9);
   transition:opacity .3s ease,transform .45s cubic-bezier(.22,.9,.3,1);transform-origin:100% 50%}
@@ -34,12 +35,25 @@
 .gw6__btn svg{width:16px;height:16px;transition:transform .2s}
 .gw6__btn:hover svg{transform:translateX(3px)}
 /* Свёрнутый вид — капсула у края */
-.gw6-pill{position:fixed;right:0;top:calc(50vh - 30px);z-index:9990;display:flex;align-items:center;gap:10px;padding:6px 16px 6px 6px;border:0;cursor:pointer;
-  border-radius:999px 0 0 999px;background:linear-gradient(135deg,rgba(255,255,255,.78),rgba(255,255,255,.55));backdrop-filter:blur(20px) saturate(170%);-webkit-backdrop-filter:blur(20px) saturate(170%);
-  box-shadow:0 12px 30px rgba(10,20,60,.25);font-family:'Open Sans','PT Sans',Tahoma,sans-serif;font-size:14px;font-weight:700;color:#15161A;
-  opacity:0;transform:translateX(100%);pointer-events:none;transition:opacity .3s ease .15s,transform .45s cubic-bezier(.22,.9,.3,1) .15s}
+.gw6-pill{position:fixed;right:12px;top:calc(50vh + 91px);z-index:9990;width:120px;height:120px;padding:8px;box-sizing:border-box;border-radius:999px;cursor:pointer;overflow:hidden;
+  border:1px solid rgba(255,255,255,.75);background:linear-gradient(135deg,rgba(255,255,255,.72),rgba(255,255,255,.38));
+  backdrop-filter:blur(20px) saturate(170%);-webkit-backdrop-filter:blur(20px) saturate(170%);
+  box-shadow:0 14px 34px rgba(10,20,60,.3),inset 0 1px 0 rgba(255,255,255,.95);font-family:'Open Sans','PT Sans',Tahoma,sans-serif;
+  opacity:0;transform:scale(.6);transform-origin:100% 50%;pointer-events:none;transition:opacity .3s ease .15s,transform .45s cubic-bezier(.3,1.4,.5,1) .15s}
 .gw6-pill.is-on{opacity:1;transform:none;pointer-events:auto}
-.gw6-pill__ph{position:relative;width:44px;height:44px;border-radius:999px;overflow:hidden;flex:0 0 44px}
+.gw6-pill:hover{transform:scale(1.05)}
+/* стекло переливается: раз в 5 с по нему проходит блик, а радужный отлив то проявляется, то гаснет */
+.gw6-pill:before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.95) 44%,rgba(190,210,255,.7) 50%,transparent 62%);background-size:260% 100%;
+  animation:gw6-glint 5s ease-in-out 1s infinite}
+.gw6-pill:after{content:"";position:absolute;inset:-20%;pointer-events:none;
+  background:conic-gradient(from 0deg,rgba(255,140,200,.55),rgba(140,190,255,.55),rgba(140,255,220,.5),rgba(255,230,140,.5),rgba(255,140,200,.55));
+  opacity:0;animation:gw6-iris 5s ease-in-out 1s infinite}
+@keyframes gw6-glint{0%{background-position:130% 0}40%,100%{background-position:-30% 0}}
+@keyframes gw6-iris{0%{opacity:0;transform:rotate(0)}20%{opacity:.55}45%{opacity:0;transform:rotate(140deg)}100%{opacity:0;transform:rotate(140deg)}}
+.gw6-pill__ph{position:relative;z-index:1;display:block;width:100%;height:100%;border-radius:999px;overflow:hidden;box-shadow:0 0 0 2px rgba(255,255,255,.9)}
+.gw6-pill__ph:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 30%,rgba(0,0,0,.6) 100%)}
+.gw6-pill__lbl{position:absolute;left:0;right:0;bottom:18px;z-index:2;text-align:center;color:#fff;font-size:19px;line-height:22px;font-weight:700;letter-spacing:-.2px;text-shadow:0 1px 6px rgba(0,0,0,.4)}
 .gw6__thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:gw6-slide 16.0s linear infinite both}
 @keyframes gw6-slide{0%{opacity:0}2.500%{opacity:1}20.000%{opacity:1}22.500%{opacity:0}100%{opacity:0}}
 @keyframes gw6-zoom{0%{transform:scale(1.02)}22.500%{transform:scale(1.12)}100%{transform:scale(1.12)}}
@@ -60,5 +74,5 @@
 /* Мобилка: по умолчанию свёрнут в капсулу, тап раскрывает; всё выше формы бронирования */
 @media (max-width:600px){
   .gw6{right:12px;top:calc(40% - 134px)}
-  .gw6-pill{top:calc(40% - 28px)}
+  .gw6-pill{right:12px;top:calc(40% - 60px)}
 }
