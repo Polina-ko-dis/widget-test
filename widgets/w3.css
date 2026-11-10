@@ -1,0 +1,43 @@
+/* Виджет 3 (вариант В): синяя карточка справа, цвет кнопок сайта.
+   Свёрнутый — язычок 96 px: белая иконка и подпись «Услуги». По наведению (или тапу) выезжает:
+   заголовок и кнопка. Высота одинаковая в обоих состояниях. Макет — холст, Widget3.dc.html. */
+.gw3{position:fixed;right:0;top:58%;z-index:9990;display:flex;align-items:stretch;width:max-content;
+  font-family:'Open Sans','PT Sans',Tahoma,sans-serif;color:#fff;background:#1743EF;
+  border-radius:20px 0 0 20px;box-shadow:0 12px 36px rgba(10,20,80,.28);
+  transform:translate(calc(100% - 96px),-50%);transition:transform .5s cubic-bezier(.22,.9,.3,1);cursor:pointer;
+  -webkit-tap-highlight-color:transparent}
+.gw3.is-open{transform:translate(0,-50%);cursor:default}
+@media (hover:hover){.gw3:hover{transform:translate(0,-50%);cursor:default}}
+.gw3 *{box-sizing:border-box}
+.gw3__tab{flex:0 0 96px;width:96px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  padding:16px 0;margin:0;border:0;background:none;color:inherit;font:inherit;cursor:pointer}
+.gw3__icon{width:48px;height:48px;display:block;transform-origin:50% 80%}
+.gw3__label{font-size:14px;line-height:16px;font-weight:600;letter-spacing:-.2px}
+.gw3__body{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:10px;padding:16px 24px 16px 4px;
+  opacity:0;transform:translateX(10px);pointer-events:none;transition:opacity .25s ease,transform .35s ease}
+.gw3.is-open .gw3__body{opacity:1;transform:none;pointer-events:auto;transition-delay:.15s}
+@media (hover:hover){.gw3:hover .gw3__body{opacity:1;transform:none;pointer-events:auto;transition-delay:.15s}}
+.gw3__title{margin:0;font-size:18px;line-height:24px;font-weight:700;white-space:nowrap;color:#fff}
+.gw3__btn{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px 0 18px;background:#fff;color:#1743EF !important;
+  font-size:14px;font-weight:700;text-decoration:none !important;border-radius:999px;transition:background-color .2s,transform .2s}
+.gw3__btn:hover{background:#EEF2FF}
+.gw3__btn:active{transform:scale(.97)}
+.gw3__btn svg{width:16px;height:16px;transition:transform .2s}
+.gw3__btn:hover svg{transform:translateX(3px)}
+/* Свёрнутый раз в 7 с чуть выглядывает, иконка покачивается */
+.gw3:not(.is-open){animation:gw3-peek 7s ease-in-out 2.5s infinite}
+.gw3:not(.is-open) .gw3__icon{animation:gw3-wiggle 3.2s ease-in-out 1s infinite}
+@media (hover:hover){.gw3:hover{animation:none}.gw3:hover .gw3__icon{animation:none}}
+@keyframes gw3-peek{0%,84%,100%{transform:translate(calc(100% - 96px),-50%)}89%{transform:translate(calc(100% - 110px),-50%)}94%{transform:translate(calc(100% - 94px),-50%)}}
+@keyframes gw3-wiggle{0%,40%,100%{transform:rotate(0) translateY(0)}8%{transform:rotate(-10deg) translateY(-3px)}16%{transform:rotate(8deg) translateY(-3px)}24%{transform:rotate(-5deg) translateY(-1px)}32%{transform:rotate(0) translateY(0)}}
+/* Мобилка: язычок 80 px, на фото (как у А и Б) */
+@media (max-width:600px){
+  .gw3{top:40%;border-radius:16px 0 0 16px;transform:translate(calc(100% - 80px),-50%)}
+  .gw3__tab{flex-basis:80px;width:80px;padding:12px 0}
+  .gw3__icon{width:40px;height:40px}
+  .gw3__label{font-size:13px}
+  .gw3__body{gap:8px;padding:12px 16px 12px 2px}
+  .gw3__title{font-size:16px;line-height:22px}
+  @keyframes gw3-peek{0%,84%,100%{transform:translate(calc(100% - 80px),-50%)}89%{transform:translate(calc(100% - 92px),-50%)}94%{transform:translate(calc(100% - 78px),-50%)}}
+}
+@media (prefers-reduced-motion:reduce){.gw3,.gw3__body{transition:none}.gw3,.gw3__icon{animation:none !important}}
