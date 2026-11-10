@@ -20,9 +20,12 @@
 @media (hover: hover) { .gw1:hover { transform: translate(0, -50%); cursor: default; } }
 
 .gw1__toggle {
-  flex: 0 0 72px; width: 72px; height: 80px; padding: 0; margin: 0; border: 0; background: none;
-  position: relative; display: flex; align-items: flex-end; justify-content: center; cursor: pointer;
+  flex: 0 0 72px; width: 72px; padding: 0; margin: 0; border: 0; background: none; color: #fff;
+  display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; font-family: inherit;
 }
+.gw1__ic { width: 72px; height: 80px; position: relative; display: flex; align-items: flex-end; justify-content: center; }
+/* подпись под иконкой — видна всегда (2026-11-10) */
+.gw1__cap { font-size: 14px; line-height: 16px; font-weight: 600; letter-spacing: -.2px; color: #fff; text-shadow: 0 1px 6px rgba(0,0,0,.25); }
 .gw1__shadow {
   position: absolute; left: 14px; right: 14px; bottom: 2px; height: 7px; border-radius: 999px;
   background: #0A0E1E44; filter: blur(3px);
@@ -74,7 +77,9 @@
 /* Мобилка (как Widget1Mobile): на фото, выше формы бронирования (на телефоне она посередине экрана) */
 @media (max-width: 600px) {
   .gw1 { --peek: 82px; top: 40%; gap: 10px; padding: 10px 16px; border-radius: 44px 0 0 44px; box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 10px 30px rgba(10,14,30,.25); }
-  .gw1__toggle { flex-basis: 56px; width: 56px; height: 64px; }
+  .gw1__toggle { flex-basis: 56px; width: 56px; gap: 3px; }
+  .gw1__ic { width: 56px; height: 64px; }
+  .gw1__cap { font-size: 13px; }
   .gw1__shadow { left: 11px; right: 11px; height: 6px; }
   .gw1__img { width: 56px; height: 56px; }
   .gw1__body { gap: 8px; }

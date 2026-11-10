@@ -9,11 +9,12 @@
   el.setAttribute('aria-label', 'Услуги отеля');
   el.innerHTML =
     '<button class="gw1__toggle" type="button" aria-label="Услуги отеля" aria-expanded="false">' +
-      '<span class="gw1__shadow" aria-hidden="true"></span>' +
-      '<img class="gw1__img" src="' + base + 'icons/other2.svg" alt="">' +
+      '<span class="gw1__ic"><span class="gw1__shadow" aria-hidden="true"></span>' +
+      '<img class="gw1__img" src="' + base + 'icons/other2.svg" alt=""></span>' +
+      '<span class="gw1__cap">Услуги</span>' +
     '</button>' +
     '<div class="gw1__body">' +
-      '<p class="gw1__title">Услуги для вашего отдыха</p>' +
+      '<p class="gw1__title">СПА, баня, трансфер и другое</p>' +
       '<a class="gw1__btn" data-allow-nav href="' + URL_SERVICES + '">Смотреть услуги' + ARROW + '</a>' +
     '</div>';
   var btn = el.querySelector('.gw1__toggle');

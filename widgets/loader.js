@@ -9,10 +9,10 @@
   if (v === '0' || !/^\d+$/.test(v)) return;
   var base = me.src.replace(/loader\.js.*$/, '');
   var css = document.createElement('link');
-  css.rel = 'stylesheet'; css.href = base + 'w' + v + '.css?v=5';
+  css.rel = 'stylesheet'; css.href = base + 'w' + v + '.css?v=6';
   document.head.appendChild(css);
   var js = document.createElement('script');
-  js.src = base + 'w' + v + '.js?v=4'; js.defer = true;
+  js.src = base + 'w' + v + '.js?v=7'; js.defer = true;
   document.head.appendChild(js);
   document.documentElement.setAttribute('data-widget', v);
 })();
