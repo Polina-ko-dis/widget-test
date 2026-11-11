@@ -3,6 +3,9 @@
    отправку форм, программные переходы (Navigation API) и кнопки бронирования
    в форме поиска TL и на карте. Якоря (#...) и прокрутка работают. */
 (function () {
+  // Страница может жить в чужом iframe (Pathway и др.): к window.top тогда доступа нет,
+  // поэтому сравниваем с адресом самой страницы (MAIN), а не с top.
+  var MAIN = window;
   var BOOK = /^(найти|забронировать|забронировать номер)$/i;
 
   function isLeaving(href, win) {
@@ -10,7 +13,7 @@
     href = String(href).trim();
     if (href === '' || href.charAt(0) === '#' || /^javascript:/i.test(href)) return false;
     try {
-      var u = new URL(href, win.location.href), cur = new URL(win.top.location.href);
+      var u = new URL(href, win.location.href), cur = new URL(MAIN.location.href);
       return !(u.origin === cur.origin && u.pathname === cur.pathname && u.search === cur.search);
     } catch (e) { return true; }
   }
@@ -33,7 +36,9 @@
       if (!el) return;
       // Исключение: ссылки виджетов (data-allow-nav) ведут на витрину услуг
       if (el.hasAttribute('data-allow-nav')) {
-        window.top.__allowNavTo = el.href;
+        // Сервисы тестов (Pathway) подменяют адрес ссылки на свой прокси,
+        // поэтому разрешаем ближайший переход по времени, а не по точному URL
+        MAIN.__allowNavUntil = Date.now() + 3000;
         return;
       }
       var href = el.tagName === 'A' ? el.getAttribute('href') : null;
@@ -66,7 +71,7 @@
   if (window.navigation && window.navigation.addEventListener) {
     window.navigation.addEventListener('navigate', function (e) {
       if (e.hashChange || e.downloadRequest) return;
-      if (window.__allowNavTo && e.destination.url === window.__allowNavTo) return;
+      if (window.__allowNavUntil && Date.now() < window.__allowNavUntil) return;
       if (isLeaving(e.destination.url, window) && e.cancelable) e.preventDefault();
     });
   }
