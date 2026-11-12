@@ -14,7 +14,7 @@
   document.head.appendChild(promo);
   // Отвлекающий виджет — копия TL-слайдера акций с sochiparkhotel.ru (слева внизу; на мобилке — плашка «Акция»); ?slider=0 — без него
   var slider = document.createElement('script');
-  slider.src = me.src.replace(/loader\.js.*$/, '') + 'tlslider.js?v=1'; slider.defer = true;
+  slider.src = me.src.replace(/loader\.js.*$/, '') + 'tlslider.js?v=2'; slider.defer = true;
   document.head.appendChild(slider);
   var v = new URLSearchParams(location.search).get('w');
   if (v === null || v === '') v = me.getAttribute('data-widget') || '1';

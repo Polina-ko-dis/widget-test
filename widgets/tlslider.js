@@ -1,5 +1,5 @@
 /* Копия TL-смарт-виджета «Слайдер» с sochiparkhotel.ru — отвлекающий виджет для A/B-теста.
-   Десктоп: карточка 464 слева внизу, 3 акции, точки и стрелки листают; цвета как в оригинале (фиолетовый).
+   Десктоп: карточка 464 слева внизу, 3 акции, точки и стрелки листают; цвета как в оригинале, кроме кнопки «Бронирую» — она синяя сайта (#1743EF, 2026-11-12).
    «Бронирую» никуда не ведёт, крестик прячет виджет (как в оригинале — целиком).
    Мобилка (≤ 600): только свёрнутая плашка «👑 Акция» слева внизу, перекрашена в синий сайта (#1743EF), некликабельна.
    Картинки — img/tlslide-*.jpg (скачаны с TL с разрешения Полины). Подключается из loader.js; ?slider=0 — без него. */
@@ -53,7 +53,7 @@
       '.t{font-weight:bold;line-height:20px;padding-right:20px;font-size:16px;color:#3D3D3D;word-break:break-word}' +
       '.tx{opacity:.8;line-height:18px;font-size:12px;color:#3D3D3D;word-break:break-word}' +
       '.ds{opacity:.45;font-size:10.8px;line-height:12px;color:#3D3D3D}.c.wd .ds{margin-top:-8px;margin-bottom:12px}' +
-      '.btn{display:inline-flex;justify-content:center;cursor:pointer;line-height:18px;font-weight:bold;padding:8px;font-size:12px;background:#8561CC;color:#fff;border-radius:3px}.btn:hover{opacity:.9}' +
+      '.btn{display:inline-flex;justify-content:center;cursor:pointer;line-height:18px;font-weight:bold;padding:8px;font-size:12px;background:#1743EF;color:#fff;border-radius:3px}.btn:hover{opacity:.9}' +
       '.x{cursor:pointer;position:absolute;right:0;top:0;display:flex;align-items:center;justify-content:center;width:32px;height:32px;padding:8px;opacity:.3;color:#3D3D3D}.x:hover{opacity:.6}' +
       '.bar{display:flex;background:#eee;border-radius:0 0 6px 6px;height:36px}' +
       '.pts{display:flex;align-items:center;justify-content:center;flex:1;padding:0 12px}' +
