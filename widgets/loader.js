@@ -4,6 +4,18 @@
    Новый вариант: widgets/w<N>.css + widgets/w<N>.js. */
 (function () {
   var me = document.currentScript;
+  // Отвлекающий виджет — копия TL ИИ-чата (только вид, некликабельный); на всех вариантах, ?chat=0 — без него
+  var chat = document.createElement('script');
+  chat.src = me.src.replace(/loader\.js.*$/, '') + 'tlchat.js?v=1'; chat.defer = true;
+  document.head.appendChild(chat);
+  // Отвлекающий виджет — копия новогодней акции с hotel-vega.ru (слева внизу, некликабельный); ?promo=0 — без него
+  var promo = document.createElement('script');
+  promo.src = me.src.replace(/loader\.js.*$/, '') + 'promo.js?v=2'; promo.defer = true;
+  document.head.appendChild(promo);
+  // Отвлекающий виджет — копия TL-слайдера акций с sochiparkhotel.ru (слева внизу; на мобилке — плашка «Акция»); ?slider=0 — без него
+  var slider = document.createElement('script');
+  slider.src = me.src.replace(/loader\.js.*$/, '') + 'tlslider.js?v=1'; slider.defer = true;
+  document.head.appendChild(slider);
   var v = new URLSearchParams(location.search).get('w');
   if (v === null || v === '') v = me.getAttribute('data-widget') || '1';
   if (v === '0' || !/^\d+$/.test(v)) return;
