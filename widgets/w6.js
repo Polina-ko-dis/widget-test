@@ -31,7 +31,7 @@
   pill.type = 'button';
   pill.className = 'gw6-pill' + (mobile ? ' is-on' : '');
   pill.setAttribute('aria-label', 'Показать услуги отеля');
-  pill.innerHTML = '<span class="gw6-pill__ph">' + thumbs + '<span class="gw6-pill__lbl">Услуги</span></span>';
+  pill.innerHTML = '<span class="gw6-pill__ph">' + thumbs + '</span><span class="gw6-pill__lbl">Услуги</span>';
   function setClosed(v) { card.classList.toggle('is-closed', v); pill.classList.toggle('is-on', v); }
   card.querySelector('.gw6__x').addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); setClosed(true); });
   pill.addEventListener('click', function (e) { e.stopPropagation(); setClosed(false); });
