@@ -24,7 +24,7 @@
   css.rel = 'stylesheet'; css.href = base + 'w' + v + '.css?v=10';
   document.head.appendChild(css);
   var js = document.createElement('script');
-  js.src = base + 'w' + v + '.js?v=9'; js.defer = true;
+  js.src = base + 'w' + v + '.js?v=10'; js.defer = true;
   document.head.appendChild(js);
   document.documentElement.setAttribute('data-widget', v);
 })();

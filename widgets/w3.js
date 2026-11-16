@@ -13,8 +13,8 @@
       '<span class="gw3__label">Услуги</span>' +
     '</button>' +
     '<div class="gw3__body">' +
-      '<p class="gw3__title">СПА, баня, трансфер и другое</p>' +
-      '<a class="gw3__btn" data-allow-nav href="' + URL_SERVICES + '">Смотреть услуги' + ARROW + '</a>' +
+      '<p class="gw3__title">Дополните ваше проживание</p>' +
+      '<a class="gw3__btn" data-allow-nav href="' + URL_SERVICES + '">Выберите услуги' + ARROW + '</a>' +
     '</div>';
   var tab = el.querySelector('.gw3__tab');
   function setOpen(v) { el.classList.toggle('is-open', v); tab.setAttribute('aria-expanded', v ? 'true' : 'false'); }
