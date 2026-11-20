@@ -17,6 +17,12 @@
       '</svg>' +
       '<img class="gw4__icon" src="' + base + 'icons/service-white.svg" alt="">' +
     '</a>' +
-    '<div class="gw4__hint" id="gw4-hint" role="tooltip">посмотри наши услуги</div>';
+    '<div class="gw4__hint" id="gw4-hint" role="tooltip">Услуги отеля: СПА, баня, трансфер</div>';
   document.body.appendChild(el);
+  // Один показ после загрузки: сначала появляется приветствие TLChat,
+  // затем подсказка об услугах на 5 секунд. Наведение работает независимо.
+  setTimeout(function () {
+    el.classList.add('is-hint-visible');
+    setTimeout(function () { el.classList.remove('is-hint-visible'); }, 5000);
+  }, 9000);
 })();

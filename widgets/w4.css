@@ -20,7 +20,8 @@
   transition:opacity .2s ease,transform .2s ease,visibility .2s}
 .gw4__hint:after{content:"";position:absolute;right:-6px;top:calc(50% - 6px);
   width:12px;height:12px;background:#FAFAFA;transform:rotate(45deg)}
-.gw4:focus-within .gw4__hint{opacity:1;visibility:visible;transform:translate(0,-50%)}
+.gw4.is-hint-visible .gw4__hint,.gw4:focus-within .gw4__hint{opacity:1;visibility:visible;transform:translate(0,-50%)}
+.gw4.is-hint-visible .gw4__link,.gw4.is-hint-visible .gw4__icon,
 .gw4:focus-within .gw4__link,.gw4:focus-within .gw4__icon{animation-play-state:paused}
 @media (hover:hover){
   .gw4:hover .gw4__hint{opacity:1;visibility:visible;transform:translate(0,-50%)}
