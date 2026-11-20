@@ -27,6 +27,14 @@
   .gw4:hover .gw4__hint{opacity:1;visibility:visible;transform:translate(0,-50%)}
   .gw4:hover .gw4__link,.gw4:hover .gw4__icon{animation-play-state:paused}
 }
+/* Solo: та же кнопка в двойном размере, без соседнего чата. */
+.gw4--solo,.gw4--solo .gw4__link{width:116px;height:116px}
+.gw4--solo .gw4__link{padding:6px}
+.gw4--solo .gw4__frame{width:104px;height:104px;filter:drop-shadow(0 2.6px 1.95px rgba(0,0,0,.15))}
+.gw4--solo .gw4__icon{left:32px;top:32px;width:52px;height:52px}
+.gw4--solo .gw4__hint{right:128px;max-width:calc(100vw - 160px);border:1px solid #A2B4F9}
+.gw4--solo .gw4__hint:after{box-sizing:border-box;border-top:1px solid #A2B4F9;border-right:1px solid #A2B4F9}
+.gw4--solo .gw4__link:focus-visible{border-radius:40px}
 /* Только в D освобождаем место под TLChat и поднимаем его приветствие вместе с кнопкой. */
 html[data-widget="4"] .tlc-btn-host{bottom:87px !important}
 html[data-widget="4"] .tlc-msg-host{bottom:152px !important}

@@ -1,13 +1,16 @@
 /* Варианты виджета для A/B-теста.
-   a/ — вариант А (виджет 1, капсула), b/ — вариант Б (с 2026-11-10 виджет 6 — карточка с превью услуг; раньше виджет 2, капля), c/ — вариант В (виджет 3, синяя карточка), d/ — вариант D (виджет 4, кнопка под TLChat).
+   a/ — вариант А (виджет 1, капсула), b/ — вариант Б (с 2026-11-10 виджет 6 — карточка с превью услуг; раньше виджет 2, капля), c/ — вариант В (виджет 3, синяя карточка), d/ — вариант D (виджет 4, кнопка под TLChat), d-solo/ — увеличенный D без TLChat.
    Вариант берётся из ?w=N, иначе из data-widget у этого <script>, иначе 1. ?w=0 — без виджета.
    Новый вариант: widgets/w<N>.css + widgets/w<N>.js. */
 (function () {
   var me = document.currentScript;
+  var solo = me.hasAttribute('data-widget-solo');
   // Отвлекающий виджет — копия TL ИИ-чата (только вид, некликабельный); на всех вариантах, ?chat=0 — без него
-  var chat = document.createElement('script');
-  chat.src = me.src.replace(/loader\.js.*$/, '') + 'tlchat.js?v=1'; chat.defer = true;
-  document.head.appendChild(chat);
+  if (!solo) {
+    var chat = document.createElement('script');
+    chat.src = me.src.replace(/loader\.js.*$/, '') + 'tlchat.js?v=1'; chat.defer = true;
+    document.head.appendChild(chat);
+  }
   // Отвлекающий виджет — копия новогодней акции с hotel-vega.ru (слева внизу, некликабельный); ?promo=0 — без него
   var promo = document.createElement('script');
   promo.src = me.src.replace(/loader\.js.*$/, '') + 'promo.js?v=2'; promo.defer = true;
@@ -21,10 +24,11 @@
   if (v === '0' || !/^\d+$/.test(v)) return;
   var base = me.src.replace(/loader\.js.*$/, '');
   var css = document.createElement('link');
-  css.rel = 'stylesheet'; css.href = base + 'w' + v + '.css?v=' + (v === '4' ? '12' : '10');
+  css.rel = 'stylesheet'; css.href = base + 'w' + v + '.css?v=' + (v === '4' ? '14' : '10');
   document.head.appendChild(css);
   var js = document.createElement('script');
-  js.src = base + 'w' + v + '.js?v=' + (v === '4' ? '12' : '11'); js.defer = true;
+  js.src = base + 'w' + v + '.js?v=' + (v === '4' ? '13' : '11'); js.defer = true;
+  if (solo) js.setAttribute('data-widget-solo', '');
   document.head.appendChild(js);
   document.documentElement.setAttribute('data-widget', v);
 })();

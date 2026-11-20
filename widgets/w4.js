@@ -3,8 +3,9 @@
   var mobile = window.matchMedia('(max-width: 600px)').matches;
   var URL_SERVICES = 'https://polina-ko-dis.github.io/uslugi-prototype/' + (mobile ? 'Main.html' : 'MainDesktop.html');
   var base = document.currentScript.src.replace(/w4\.js.*$/, '');
+  var solo = document.currentScript.hasAttribute('data-widget-solo');
   var el = document.createElement('aside');
-  el.className = 'gw4';
+  el.className = 'gw4' + (solo ? ' gw4--solo' : '');
   el.setAttribute('aria-label', 'Услуги отеля');
   el.innerHTML =
     '<a class="gw4__link" data-allow-nav href="' + URL_SERVICES + '" aria-label="Услуги отеля" aria-describedby="gw4-hint">' +
@@ -19,10 +20,12 @@
     '</a>' +
     '<div class="gw4__hint" id="gw4-hint" role="tooltip">Услуги отеля: СПА, баня, трансфер</div>';
   document.body.appendChild(el);
-  // Один показ после загрузки: сначала появляется приветствие TLChat,
-  // затем подсказка об услугах на 5 секунд. Наведение работает независимо.
-  setTimeout(function () {
+  function showHint(duration) {
     el.classList.add('is-hint-visible');
-    setTimeout(function () { el.classList.remove('is-hint-visible'); }, 5000);
-  }, 9000);
+    setTimeout(function () { el.classList.remove('is-hint-visible'); }, duration);
+  }
+  // Solo знакомит с услугами сразу на 10 секунд. Обычный D сначала
+  // даёт прочитать приветствие TLChat и показывает подсказку на 5 секунд.
+  if (solo) showHint(10000);
+  else setTimeout(function () { showHint(5000); }, 9000);
 })();
