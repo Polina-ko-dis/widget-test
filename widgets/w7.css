@@ -21,15 +21,17 @@
 .gw5__service-link{display:block;width:58px;height:58px;border-radius:20px;cursor:pointer;text-decoration:none}
 .gw5__chat{bottom:8px}
 .gw5__label{display:flex;flex-direction:column;gap:2px;min-width:0;overflow:hidden;white-space:nowrap;
-  font-size:15px;line-height:20px;text-shadow:0 1px 2px rgba(255,255,255,.55);transition:opacity .15s ease}
+  font-size:15px;line-height:20px;text-shadow:0 1px 2px rgba(255,255,255,.55);transition:opacity .15s ease,color .18s ease}
 .gw5__label strong{font-weight:700}
 .gw5__description{font-size:14px;font-weight:400;line-height:18px}
 .gw5__icon{position:relative;display:block;width:58px;height:58px;padding:3px;color:#1743EF;
-  user-select:none;-webkit-user-select:none}
+  user-select:none;-webkit-user-select:none;transition:color .18s ease}
 .gw5__icon svg{display:block;width:52px;height:52px;fill:#fff;
   filter:drop-shadow(0 1.3px .975px rgba(0,0,0,.15))}
 .gw5__icon img{position:absolute;left:16px;top:16px;width:26px;height:26px;pointer-events:none}
-.gw5__chat:hover .gw5__icon,.gw5__service-link:hover .gw5__icon{color:#1238CC}
+@media(hover:hover) and (pointer:fine){
+  .gw5__row:hover .gw5__icon,.gw5__row:hover .gw5__label{color:#1238CC}
+}
 .gw5__row:focus-visible,.gw5__service-link:focus-visible{outline:2px solid #1743EF;outline-offset:3px}
 .gw5.is-collapsed{width:66px;height:128px}
 .gw5.is-collapsed .gw5__row{right:4px;width:58px;padding:0;column-gap:0}
