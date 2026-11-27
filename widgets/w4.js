@@ -5,7 +5,7 @@
   var base = document.currentScript.src.replace(/w4\.js.*$/, '');
   var solo = document.currentScript.hasAttribute('data-widget-solo');
   var el = document.createElement('aside');
-  el.className = 'gw4' + (solo ? ' gw4--solo' : '');
+  el.className = 'gw4' + (solo ? ' gw4--solo' : ' gw4--group');
   el.setAttribute('aria-label', 'Услуги отеля');
   el.innerHTML =
     '<a class="gw4__link" data-allow-nav href="' + URL_SERVICES + '" aria-label="Услуги отеля" aria-describedby="gw4-hint">' +
@@ -18,14 +18,28 @@
       '</svg>' +
       '<img class="gw4__icon" src="' + base + 'icons/service-white.svg" alt="">' +
     '</a>' +
-    '<div class="gw4__hint" id="gw4-hint" role="tooltip">Услуги отеля: СПА, баня, трансфер</div>';
+    '<div class="gw4__hint" role="' + (solo ? 'tooltip' : 'group') + '" aria-label="Подсказка об услугах отеля">' +
+      '<span id="gw4-hint">Услуги отеля: СПА, баня, трансфер</span>' +
+      (solo ? '' : '<button class="gw4__close" type="button" aria-label="Закрыть подсказку об услугах"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 5.6 18.4 4 12 10.4 5.6 4 4 5.6l6.4 6.4L4 18.4 5.6 20l6.4-6.4 6.4 6.4 1.6-1.6-6.4-6.4z"/></svg></button>') +
+    '</div>';
   document.body.appendChild(el);
-  function showHint(duration) {
-    el.classList.add('is-hint-visible');
-    setTimeout(function () { el.classList.remove('is-hint-visible'); }, duration);
+  var hintClosed = false;
+  var hintTimer;
+  function closeHint() {
+    if (hintClosed) return;
+    hintClosed = true;
+    clearTimeout(hintTimer);
+    el.classList.remove('is-hint-visible');
+    if (!solo) {
+      el.querySelector('.gw4__hint').hidden = true;
+      document.documentElement.setAttribute('data-widget-services-hint', 'closed');
+      document.dispatchEvent(new Event('gw4:hint-closed'));
+    }
   }
-  // Solo знакомит с услугами сразу на 10 секунд. Обычный D сначала
-  // даёт прочитать приветствие TLChat и показывает подсказку на 5 секунд.
-  if (solo) showHint(10000);
-  else setTimeout(function () { showHint(5000); }, 9000);
+  if (!solo) {
+    document.documentElement.setAttribute('data-widget-services-hint', 'visible');
+    el.querySelector('.gw4__close').addEventListener('click', closeHint);
+  }
+  el.classList.add('is-hint-visible');
+  hintTimer = setTimeout(closeHint, solo ? 10000 : 5000);
 })();

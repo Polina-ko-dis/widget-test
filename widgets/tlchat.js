@@ -5,6 +5,7 @@
    Подключается из loader.js на всех вариантах; ?chat=0 — без него. */
 (function () {
   if (new URLSearchParams(location.search).get('chat') === '0') return;
+  var grouped = document.currentScript.hasAttribute('data-widget-group');
   var mobile = window.matchMedia('(max-width: 600px)').matches;
   var C = '#1743EF', CH = '#1238CC';
 
@@ -35,18 +36,41 @@
   msgHost.className = 'tlc-msg-host';
   msgHost.style.cssText = 'position:fixed;z-index:2147483000;right:16px;bottom:' + (mobile ? 79 : 82) + 'px;max-width:' + (mobile ? 280 : 371) + 'px;width:' + (mobile ? 'calc(100vw - 32px)' : '371px') +
     ';background:#FAFAFA;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,.15);opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease';
+  if (grouped) {
+    msgHost.style.display = 'none';
+    msgHost.style.transform = 'translateY(50%)';
+    msgHost.setAttribute('aria-hidden', 'true');
+  }
   var ms = msgHost.attachShadow({ mode: 'open' });
   ms.innerHTML =
     '<style>:host{all:initial}.m{position:relative;box-sizing:border-box;padding:12px;color:#313131;font-family:Arial,sans-serif;cursor:pointer}' +
     '.m:before{content:"";position:absolute;right:31px;bottom:-7px;width:14px;height:14px;background:#FAFAFA;box-shadow:6px 6px 12px rgba(0,0,0,.15);transform:rotate(45deg)}' +
     '.h{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;position:relative}.t{font-size:12px;font-weight:700}' +
     '.x{appearance:none;-webkit-appearance:none;background:none;border:none;box-sizing:border-box;color:' + C + ';cursor:pointer;display:flex;align-items:center;justify-content:center;width:24px;height:24px;margin:0;padding:3px}' +
-    '.x svg{width:18px;height:18px}.tx{position:relative;display:inline-block;font-size:14px;line-height:20px}</style>' +
+    '.x svg{width:18px;height:18px}.tx{position:relative;display:inline-block;font-size:14px;line-height:20px}' +
+    (grouped ? '.m{display:flex;align-items:center;gap:12px;padding:12px 12px 12px 16px}.h{order:1;flex:none;margin:0}.t{display:none}.m:before{right:-6px;top:calc(50% - 6px);bottom:auto;width:12px;height:12px;box-shadow:none}.x{border-radius:4px}.x:hover{background:#E9EEFF}.x:focus-visible{outline:2px solid ' + C + ';outline-offset:2px}@media(max-width:600px){.m:before{top:auto;bottom:23px}}' : '') + '</style>' +
     '<div class="m"><div class="h"><span class="t">ИИ-помощник</span>' +
     '<button class="x" type="button" aria-label="Закрыть"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path fill="currentColor" d="M20 5.6 18.4 4 12 10.4 5.6 4 4 5.6l6.4 6.4L4 18.4 5.6 20l6.4-6.4 6.4 6.4 1.6-1.6-6.4-6.4z"></path></svg></button></div>' +
-    '<span class="tx">Отвечу на&nbsp;любой вопрос, помогу подобрать и&nbsp;забронировать номер и&nbsp;услуги&nbsp;— просто напишите мне.</span></div>';
+    '<span class="tx">' + (grouped ? 'Могу помочь с вопросами и бронированием услуги и проживания!' : 'Отвечу на&nbsp;любой вопрос, помогу подобрать и&nbsp;забронировать номер и&nbsp;услуги&nbsp;— просто напишите мне.') + '</span></div>';
+  if (grouped) ms.querySelector('.x').setAttribute('aria-label', 'Закрыть подсказку чата');
+  var hintTimer;
+  var hintShown = false;
+  function closeGroupedHint() {
+    clearTimeout(hintTimer);
+    msgHost.style.display = 'none';
+    msgHost.setAttribute('aria-hidden', 'true');
+  }
+  function showGroupedHint() {
+    if (hintShown) return;
+    hintShown = true;
+    msgHost.style.display = 'block';
+    msgHost.style.opacity = '1';
+    msgHost.setAttribute('aria-hidden', 'false');
+    hintTimer = setTimeout(closeGroupedHint, 5000);
+  }
   ms.querySelector('.x').addEventListener('click', function (e) {
     e.stopPropagation();
+    if (grouped) { closeGroupedHint(); return; }
     msgHost.style.opacity = '0'; msgHost.style.transform = 'translateY(8px)';
     setTimeout(function () { msgHost.style.display = 'none'; }, 300);
   });
@@ -54,8 +78,12 @@
   function mount() {
     document.body.appendChild(msgHost);
     document.body.appendChild(btnHost);
-    // пузырь появляется через 2 с, как у TL
-    setTimeout(function () { msgHost.style.opacity = '1'; msgHost.style.transform = 'none'; }, 2000);
+    if (grouped) {
+      document.addEventListener('gw4:hint-closed', showGroupedHint, { once: true });
+      if (document.documentElement.getAttribute('data-widget-services-hint') === 'closed') showGroupedHint();
+    } else {
+      setTimeout(function () { msgHost.style.opacity = '1'; msgHost.style.transform = 'none'; }, 2000);
+    }
   }
   if (document.body) mount(); else document.addEventListener('DOMContentLoaded', mount);
 })();
