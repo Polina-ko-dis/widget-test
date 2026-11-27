@@ -8,7 +8,7 @@
 .gw5__surface:after{content:"";position:absolute;left:0;top:-35%;width:70%;height:170%;
   background:linear-gradient(105deg,transparent 18%,rgba(226,238,255,.2) 35%,rgba(255,255,255,.85) 48%,
     rgba(255,255,255,.95) 50%,rgba(194,211,236,.35) 56%,transparent 78%);
-  opacity:0;transform:translateX(-160%) skewX(-18deg);animation:gw5-shimmer 4s ease-in-out .4s infinite}
+  opacity:0;transform:translateX(-160%) skewX(-18deg);animation:gw5-shimmer 10s ease-in-out .4s infinite}
 @supports ((backdrop-filter:blur(18px)) or (-webkit-backdrop-filter:blur(18px))){
   .gw5__surface{background:linear-gradient(145deg,rgba(255,255,255,.76),rgba(236,243,255,.46));
     -webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%)}
@@ -19,7 +19,6 @@
   text-align:left;text-decoration:none;cursor:pointer;transition:right .35s ease,bottom .35s ease,width .35s ease,padding .35s ease,column-gap .35s ease}
 .gw5__services{bottom:70px}
 .gw5__chat{bottom:8px}
-.gw5__row[hidden]{display:none}
 .gw5__label{min-width:0;overflow:hidden;white-space:nowrap;font-size:15px;font-weight:600;line-height:22px;
   text-shadow:0 1px 2px rgba(255,255,255,.55);transition:opacity .15s ease}
 .gw5__icon{position:relative;display:block;width:58px;height:58px;padding:3px;color:#1743EF;
@@ -29,16 +28,45 @@
 .gw5__icon img{position:absolute;left:16px;top:16px;width:26px;height:26px;pointer-events:none}
 .gw5__row:hover .gw5__icon{color:#1238CC}
 .gw5__row:focus-visible{outline:2px solid #1743EF;outline-offset:3px}
-.gw5.is-collapsed{width:58px;height:58px}
-.gw5.is-collapsed .gw5__surface{opacity:0}
-.gw5.is-collapsed .gw5__surface:after{animation:none;opacity:0}
-.gw5.is-collapsed .gw5__chat{right:0;bottom:0;width:58px;padding:0;column-gap:0}
+.gw5.is-collapsed{width:66px;height:128px}
+.gw5.is-collapsed .gw5__row{right:4px;width:58px;padding:0;column-gap:0}
+.gw5.is-collapsed .gw5__services{bottom:66px}
+.gw5.is-collapsed .gw5__chat{bottom:4px}
 .gw5.is-collapsed .gw5__label{opacity:0;visibility:hidden}
+@media(prefers-reduced-motion:no-preference){
+  .gw5.is-collapsed .gw5__chat .gw5__icon{transform-origin:50% 100%;
+    animation:gw5-chat-nudge 8s ease-in-out .8s infinite}
+  .gw5.is-collapsed .gw5__eyes{animation:gw5-chat-look 8s ease-in-out .8s infinite}
+  .gw5.is-collapsed .gw5__services .gw5__icon{transform-origin:50% 50%;
+    animation:gw5-service-bump 8s linear .8s infinite}
+}
+@keyframes gw5-chat-look{
+  0%,4%,28%,100%{transform:translateY(0)}
+  8%,24%{transform:translateY(-4px)}
+}
+@keyframes gw5-chat-nudge{
+  0%,10%,26%,100%{transform:translateY(0) scale(1)}
+  13%{transform:translateY(2px) scale(1.04,.94)}
+  17%{transform:translateY(-18px) scale(.98,1.04)}
+  18%{transform:translateY(-17px) scale(1)}
+  22%{transform:translateY(1px) scale(1.04,.95)}
+}
+@keyframes gw5-service-bump{
+  0%,16%,26%,100%{transform:translate(0,0) rotate(0)}
+  17%{transform:translate(0,-4px) rotate(-2deg)}
+  18%{transform:translate(-2px,-3px) rotate(-5deg)}
+  19%{transform:translate(2px,-2px) rotate(5deg)}
+  20%{transform:translate(-2px,-1px) rotate(-4deg)}
+  21%{transform:translate(2px,0) rotate(4deg)}
+  22%{transform:translate(-1.5px,0) rotate(-3deg)}
+  23%{transform:translate(1.5px,0) rotate(2deg)}
+  24%{transform:translate(-.75px,0) rotate(-1deg)}
+}
 @keyframes gw5-shimmer{
-  0%,10%{transform:translateX(-160%) skewX(-18deg);opacity:0}
-  16%{opacity:1}
-  58%{transform:translateX(255%) skewX(-18deg);opacity:1}
-  66%,100%{transform:translateX(255%) skewX(-18deg);opacity:0}
+  0%,4%{transform:translateX(-160%) skewX(-18deg);opacity:0}
+  6.4%{opacity:1}
+  23.2%{transform:translateX(255%) skewX(-18deg);opacity:1}
+  26.4%,100%{transform:translateX(255%) skewX(-18deg);opacity:0}
 }
 @media(max-width:600px){.gw5{bottom:13px}}
 @media(prefers-reduced-motion:reduce){.gw5__surface:after{animation:none;opacity:0}.gw5,.gw5 *{transition:none}}
