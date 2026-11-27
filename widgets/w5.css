@@ -1,0 +1,40 @@
+.gw5{position:fixed;right:13px;bottom:17px;z-index:2147483000;width:244px;height:144px;
+  max-width:calc(100vw - 26px);font-family:Arial,sans-serif;color:#172246;
+  -webkit-tap-highlight-color:transparent;transform-origin:85% 85%;
+  transition:width .35s ease,height .35s ease;animation:gw5-tremble 4s linear .8s infinite}
+.gw5 *{box-sizing:border-box}
+.gw5__surface{position:absolute;inset:0;border:1px solid rgba(255,255,255,.85);border-radius:28px;
+  background:rgba(245,249,255,.94);box-shadow:0 8px 28px rgba(20,35,80,.16),inset 0 1px 0 rgba(255,255,255,.9);
+  pointer-events:none;transition:opacity .25s ease}
+@supports ((backdrop-filter:blur(18px)) or (-webkit-backdrop-filter:blur(18px))){
+  .gw5__surface{background:linear-gradient(145deg,rgba(255,255,255,.76),rgba(236,243,255,.46));
+    -webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%)}
+}
+.gw5__row{appearance:none;-webkit-appearance:none;position:absolute;right:12px;width:calc(100% - 24px);height:58px;
+  display:grid;grid-template-columns:1fr 58px;align-items:center;column-gap:12px;
+  border:0;border-radius:20px;background:none;margin:0;padding:0 0 0 8px;font:inherit;color:inherit;
+  text-align:left;text-decoration:none;cursor:pointer;transition:right .35s ease,bottom .35s ease,width .35s ease,padding .35s ease,column-gap .35s ease}
+.gw5__services{bottom:74px}
+.gw5__chat{bottom:12px}
+.gw5__row[hidden]{display:none}
+.gw5__label{min-width:0;overflow:hidden;white-space:nowrap;font-size:15px;font-weight:600;line-height:22px;
+  text-shadow:0 1px 2px rgba(255,255,255,.55);transition:opacity .15s ease}
+.gw5__icon{position:relative;display:block;width:58px;height:58px;padding:3px;color:#1743EF;
+  user-select:none;-webkit-user-select:none}
+.gw5__icon svg{display:block;width:52px;height:52px;fill:#fff;
+  filter:drop-shadow(0 1.3px .975px rgba(0,0,0,.15))}
+.gw5__icon img{position:absolute;left:16px;top:16px;width:26px;height:26px;pointer-events:none}
+.gw5__row:hover .gw5__icon{color:#1238CC}
+.gw5__row:focus-visible{outline:2px solid #1743EF;outline-offset:3px}
+.gw5:hover,.gw5:focus-within{animation-play-state:paused}
+.gw5.is-collapsed{width:58px;height:58px;animation:none}
+.gw5.is-collapsed .gw5__surface{opacity:0}
+.gw5.is-collapsed .gw5__chat{right:0;bottom:0;width:58px;padding:0;column-gap:0}
+.gw5.is-collapsed .gw5__label{opacity:0;visibility:hidden}
+@keyframes gw5-tremble{
+  0%,70%,90%,100%{transform:translateX(0) rotate(0)}
+  73%,81%{transform:translateX(-1px) rotate(-.35deg)}
+  77%,85%{transform:translateX(1px) rotate(.35deg)}
+}
+@media(max-width:600px){.gw5{bottom:13px}}
+@media(prefers-reduced-motion:reduce){.gw5{animation:none}.gw5,.gw5 *{transition:none}}
