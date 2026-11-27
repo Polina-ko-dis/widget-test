@@ -1,6 +1,6 @@
-.gw5{position:fixed;right:13px;bottom:17px;z-index:2147483000;width:200px;height:136px;
+.gw5{position:fixed;right:13px;bottom:17px;z-index:2147483000;width:66px;height:128px;
   max-width:calc(100vw - 26px);font-family:Arial,sans-serif;color:#172246;
-  -webkit-tap-highlight-color:transparent;transition:width .35s ease,height .35s ease}
+  -webkit-tap-highlight-color:transparent}
 .gw5 *{box-sizing:border-box}
 .gw5__surface{position:absolute;inset:0;overflow:hidden;border:1px solid rgba(255,255,255,.85);border-radius:24px;
   background:rgba(245,249,255,.94);box-shadow:0 8px 28px rgba(20,35,80,.16),inset 0 1px 0 rgba(255,255,255,.9);
@@ -13,14 +13,11 @@
   .gw5__surface{background:linear-gradient(145deg,rgba(255,255,255,.76),rgba(236,243,255,.46));
     -webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%)}
 }
-.gw5__row{appearance:none;-webkit-appearance:none;position:absolute;right:8px;width:calc(100% - 16px);height:58px;
-  display:grid;grid-template-columns:1fr 58px;align-items:center;column-gap:8px;
-  border:0;border-radius:20px;background:none;margin:0;padding:0 0 0 4px;font:inherit;color:inherit;
-  text-align:left;text-decoration:none;cursor:pointer;transition:right .35s ease,bottom .35s ease,width .35s ease,padding .35s ease,column-gap .35s ease}
-.gw5__services{bottom:70px}
-.gw5__chat{bottom:8px}
-.gw5__label{min-width:0;overflow:hidden;white-space:nowrap;font-size:15px;font-weight:600;line-height:22px;
-  text-shadow:0 1px 2px rgba(255,255,255,.55);transition:opacity .15s ease}
+.gw5__row{position:absolute;right:4px;display:block;width:58px;height:58px;
+  border:0;border-radius:20px;background:none;margin:0;padding:0;font:inherit;color:inherit;
+  text-decoration:none;cursor:pointer}
+.gw5__services{bottom:66px}
+.gw5__chat{bottom:4px;cursor:default}
 .gw5__icon{position:relative;display:block;width:58px;height:58px;padding:3px;color:#1743EF;
   user-select:none;-webkit-user-select:none}
 .gw5__icon svg{display:block;width:52px;height:52px;fill:#fff;
@@ -28,17 +25,33 @@
 .gw5__icon img{position:absolute;left:16px;top:16px;width:26px;height:26px;pointer-events:none}
 .gw5__row:hover .gw5__icon{color:#1238CC}
 .gw5__row:focus-visible{outline:2px solid #1743EF;outline-offset:3px}
-.gw5.is-collapsed{width:66px;height:128px}
-.gw5.is-collapsed .gw5__row{right:4px;width:58px;padding:0;column-gap:0}
-.gw5.is-collapsed .gw5__services{bottom:66px}
-.gw5.is-collapsed .gw5__chat{bottom:4px}
-.gw5.is-collapsed .gw5__label{opacity:0;visibility:hidden}
+.gw5__hint{position:absolute;right:calc(100% + 12px);top:0;display:grid;grid-template-rows:58px 58px;gap:4px;
+  width:340px;max-width:calc(100vw - 120px);height:128px;padding:3px 12px;
+  border:1px solid #D9E2F5;border-radius:20px;background:#FAFAFA;color:#313131;
+  box-shadow:0 4px 12px rgba(0,0,0,.15);animation:gw5-hint-enter .22s ease both}
+.gw5__hint[hidden]{display:none}
+.gw5__hint:after{content:"";position:absolute;right:-6px;top:calc(50% - 5px);width:10px;height:10px;box-sizing:border-box;
+  border-top:1px solid #D9E2F5;border-right:1px solid #D9E2F5;background:#FAFAFA;transform:rotate(45deg)}
+.gw5__hint-text{display:flex;align-items:center;margin:0;font-size:14px;line-height:18px}
+.gw5__hint-text:first-child{padding-right:24px}
+.gw5__hint-text strong{font-weight:700}
+.gw5__hint-close{appearance:none;-webkit-appearance:none;position:absolute;top:4px;right:4px;
+  display:flex;align-items:center;justify-content:center;width:24px;height:24px;margin:0;padding:3px;
+  border:0;border-radius:6px;background:none;color:#1743EF;cursor:pointer}
+.gw5__hint-close svg{width:16px;height:16px}
+.gw5__hint-close:hover{background:#E9EEFF}
+.gw5__hint-close:focus-visible{outline:2px solid #1743EF;outline-offset:2px}
 @media(prefers-reduced-motion:no-preference){
-  .gw5.is-collapsed .gw5__chat .gw5__icon{transform-origin:50% 100%;
+  .gw5__chat .gw5__icon{transform-origin:50% 100%;
     animation:gw5-chat-nudge 8s ease-in-out .8s infinite}
-  .gw5.is-collapsed .gw5__eyes{animation:gw5-chat-look 8s ease-in-out .8s infinite}
-  .gw5.is-collapsed .gw5__services .gw5__icon{transform-origin:50% 50%;
+  .gw5__eyes{animation:gw5-chat-look 8s ease-in-out .8s infinite}
+  .gw5__services .gw5__icon{transform-origin:50% 50%;
     animation:gw5-service-bump 8s linear .8s infinite}
+}
+.gw5.has-hint .gw5__icon,.gw5.has-hint .gw5__eyes{animation:none}
+@keyframes gw5-hint-enter{
+  from{opacity:0;transform:translateX(6px)}
+  to{opacity:1;transform:translateX(0)}
 }
 @keyframes gw5-chat-look{
   0%,4%,28%,100%{transform:translateY(0)}
@@ -69,4 +82,4 @@
   26.4%,100%{transform:translateX(255%) skewX(-18deg);opacity:0}
 }
 @media(max-width:600px){.gw5{bottom:13px}}
-@media(prefers-reduced-motion:reduce){.gw5__surface:after{animation:none;opacity:0}.gw5,.gw5 *{transition:none}}
+@media(prefers-reduced-motion:reduce){.gw5__surface:after{animation:none;opacity:0}.gw5__hint{animation:none}.gw5,.gw5 *{transition:none}}

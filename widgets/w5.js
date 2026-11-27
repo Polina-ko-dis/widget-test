@@ -3,7 +3,7 @@
   var mobile = window.matchMedia('(max-width: 600px)').matches;
   var servicesUrl = 'https://polina-ko-dis.github.io/uslugi-prototype/' + (mobile ? 'Main.html' : 'MainDesktop.html');
   var panel = document.createElement('aside');
-  panel.className = 'gw5';
+  panel.className = 'gw5 has-hint';
   panel.setAttribute('aria-label', 'Услуги отеля и ИИ-помощник');
 
   function createIcon(isChat) {
@@ -22,33 +22,40 @@
 
   panel.innerHTML =
     '<div class="gw5__surface" aria-hidden="true"></div>' +
-    '<a class="gw5__row gw5__services" id="gw5-services" data-allow-nav href="' + servicesUrl + '" aria-label="Услуги отеля">' +
-      '<span class="gw5__label" id="gw5-services-label">Услуги</span>' + createIcon(false) +
+    '<a class="gw5__row gw5__services" data-allow-nav href="' + servicesUrl + '" aria-label="Услуги отеля" aria-describedby="gw5-services-hint">' +
+      createIcon(false) +
     '</a>' +
-    '<button class="gw5__row gw5__chat" type="button" aria-controls="gw5-services-label gw5-chat-label" aria-expanded="true">' +
-      '<span class="gw5__label" id="gw5-chat-label">ИИ-Помощник</span>' + createIcon(true) +
-    '</button>';
+    '<div class="gw5__row gw5__chat" role="img" aria-label="ИИ-Помощник" aria-describedby="gw5-chat-hint">' +
+      createIcon(true) +
+    '</div>' +
+    '<div class="gw5__hint" role="group" aria-label="Подсказки об услугах и ИИ-Помощнике">' +
+      '<p class="gw5__hint-text" id="gw5-services-hint"><span>Дополните проживание <strong>услугами</strong> из нашей витрины.</span></p>' +
+      '<p class="gw5__hint-text" id="gw5-chat-hint"><span>Задайте <strong>ИИ-помощнику</strong> вопрос о проживании или нашем отеле.</span></p>' +
+      '<button class="gw5__hint-close" type="button" aria-label="Закрыть подсказку"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 5.6 18.4 4 12 10.4 5.6 4 4 5.6l6.4 6.4L4 18.4 5.6 20l6.4-6.4 6.4 6.4 1.6-1.6-6.4-6.4z"/></svg></button>' +
+    '</div>';
   document.body.appendChild(panel);
 
+  var hint = panel.querySelector('.gw5__hint');
+  var services = panel.querySelector('.gw5__services');
   var chat = panel.querySelector('.gw5__chat');
-  var collapseTimer;
+  var hintTimer;
 
-  function setCollapsed(collapsed) {
-    clearTimeout(collapseTimer);
-    panel.classList.toggle('is-collapsed', collapsed);
-    chat.setAttribute('aria-expanded', String(!collapsed));
-    chat.setAttribute('aria-label', collapsed ? 'ИИ-Помощник — развернуть панель' : 'ИИ-Помощник — свернуть панель');
-    if (!collapsed) collapseTimer = setTimeout(function () { setCollapsed(true); }, 7000);
+  function closeHint() {
+    if (hint.hidden) return;
+    var restoreFocus = hint.contains(document.activeElement);
+    clearTimeout(hintTimer);
+    hint.hidden = true;
+    panel.classList.remove('has-hint');
+    services.removeAttribute('aria-describedby');
+    chat.removeAttribute('aria-describedby');
+    window.removeEventListener('scroll', closeHint);
+    if (restoreFocus) services.focus({ preventScroll: true });
   }
 
-  chat.addEventListener('click', function () {
-    setCollapsed(!panel.classList.contains('is-collapsed'));
-  });
+  panel.querySelector('.gw5__hint-close').addEventListener('click', closeHint);
+  window.addEventListener('scroll', closeHint, { passive: true });
   panel.addEventListener('keydown', function (event) {
-    if (event.key === 'Escape' && !panel.classList.contains('is-collapsed')) {
-      setCollapsed(true);
-      chat.focus({ preventScroll: true });
-    }
+    if (event.key === 'Escape') closeHint();
   });
-  setCollapsed(false);
+  hintTimer = setTimeout(closeHint, 5000);
 })();
