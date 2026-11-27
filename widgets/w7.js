@@ -1,0 +1,66 @@
+(function () {
+  var base = document.currentScript.src.replace(/w7\.js.*$/, '');
+  var mobile = window.matchMedia('(max-width: 600px)').matches;
+  var tapInteraction = window.matchMedia('(max-width: 600px), (hover: none), (pointer: coarse)');
+  var servicesUrl = 'https://polina-ko-dis.github.io/uslugi-prototype/' + (mobile ? 'Main.html' : 'MainDesktop.html');
+  var panel = document.createElement('aside');
+  panel.className = 'gw5 is-collapsed';
+  panel.setAttribute('aria-label', 'Услуги отеля и ИИ-помощник');
+
+  function createIcon(isChat) {
+    return '<span class="gw5__icon" aria-hidden="true">' +
+      '<svg viewBox="0 0 58 58" xmlns="http://www.w3.org/2000/svg">' +
+        '<g transform="translate(3,3)">' +
+          '<path d="M26 1C46.8 1 51 5.2 51 26C51 46.8 46.8 51 26 51C5.2 51 1 46.8 1 26C1 5.2 5.2 1 26 1Z"/>' +
+          '<path d="M26 0C46.8 0 52 5.2 52 26C52 46.8 46.8 52 26 52C5.2 52 0 46.8 0 26C0 5.2 5.2 0 26 0ZM26 4.55C8.84 4.55 4.55 8.84 4.55 26C4.55 43.16 8.84 47.45 26 47.45C43.16 47.45 47.45 43.16 47.45 26C47.45 8.84 43.16 4.55 26 4.55Z" fill="currentColor" fill-rule="evenodd"/>' +
+          '<path d="M8 26C8 11.6 11.6 8 26 8C40.4 8 44 11.6 44 26C44 40.4 40.4 44 26 44C11.6 44 8 40.4 8 26Z" fill="currentColor"/>' +
+          (isChat ? '<g class="gw5__eyes"><rect x="16" y="22" width="6" height="7" rx="2"/><rect x="30" y="22" width="6" height="7" rx="2"/></g><path d="M24 29H28C28 30.1046 27.1046 31 26 31C24.8954 31 24 30.1046 24 29Z"/>' : '') +
+        '</g>' +
+      '</svg>' +
+      (isChat ? '' : '<img src="' + base + 'icons/service-white.svg" alt="">') +
+    '</span>';
+  }
+
+  panel.innerHTML =
+    '<div class="gw5__surface" aria-hidden="true"></div>' +
+    '<div class="gw5__row gw5__services">' +
+      '<span class="gw5__label" id="gw5-services-label"><strong>Услуги</strong><span class="gw5__description" id="gw5-services-description">Дополните проживание</span></span>' +
+      '<a class="gw5__service-link" data-allow-nav href="' + servicesUrl + '" aria-label="Услуги отеля" aria-describedby="gw5-services-description">' + createIcon(false) + '</a>' +
+    '</div>' +
+    '<button class="gw5__row gw5__chat" type="button" aria-controls="gw5-services-label gw5-chat-label" aria-expanded="false" aria-describedby="gw5-chat-description">' +
+      '<span class="gw5__label" id="gw5-chat-label"><strong>ИИ-помощник</strong><span class="gw5__description" id="gw5-chat-description">Помогу с бронью и другим</span></span>' + createIcon(true) +
+    '</button>';
+  document.body.appendChild(panel);
+
+  var chat = panel.querySelector('.gw5__chat');
+
+  function setCollapsed(collapsed) {
+    panel.classList.toggle('is-collapsed', collapsed);
+    chat.setAttribute('aria-expanded', String(!collapsed));
+    chat.setAttribute('aria-label', collapsed ? 'ИИ-помощник — развернуть панель' : 'ИИ-помощник — свернуть панель');
+  }
+
+  panel.addEventListener('click', function (event) {
+    if (event.target.closest('.gw5__service-link')) return;
+    var chatClicked = event.target.closest('.gw5__chat');
+    var tapped = tapInteraction.matches || event.pointerType === 'touch' || event.pointerType === 'pen';
+    if (!tapped && !(chatClicked && event.detail === 0)) return;
+    event.preventDefault();
+    setCollapsed(!panel.classList.contains('is-collapsed'));
+  });
+  panel.addEventListener('pointerenter', function (event) {
+    if (event.pointerType !== 'mouse' || tapInteraction.matches) return;
+    setCollapsed(false);
+  });
+  panel.addEventListener('pointerleave', function (event) {
+    if (event.pointerType !== 'mouse' || tapInteraction.matches) return;
+    setCollapsed(true);
+  });
+  panel.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && !panel.classList.contains('is-collapsed')) {
+      setCollapsed(true);
+      chat.focus({ preventScroll: true });
+    }
+  });
+  setCollapsed(true);
+})();
