@@ -28,7 +28,7 @@
   css.rel = 'stylesheet'; css.href = base + 'w' + v + '.css?v=' + (v === '4' ? '17' : (v === '5' ? '13' : '10'));
   document.head.appendChild(css);
   var js = document.createElement('script');
-  js.src = base + 'w' + v + '.js?v=' + (v === '4' ? '14' : (v === '5' ? '13' : '11')); js.defer = true;
+  js.src = base + 'w' + v + '.js?v=' + (v === '4' ? '14' : (v === '5' ? '13' : (v === '7' ? '12' : '11'))); js.defer = true;
   if (solo) js.setAttribute('data-widget-solo', '');
   document.head.appendChild(js);
   document.documentElement.setAttribute('data-widget', v);

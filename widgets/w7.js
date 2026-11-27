@@ -4,7 +4,7 @@
   var tapInteraction = window.matchMedia('(max-width: 600px), (hover: none), (pointer: coarse)');
   var servicesUrl = 'https://polina-ko-dis.github.io/uslugi-prototype/' + (mobile ? 'Main.html' : 'MainDesktop.html');
   var panel = document.createElement('aside');
-  panel.className = 'gw5 is-collapsed';
+  panel.className = 'gw5';
   panel.setAttribute('aria-label', 'Услуги отеля и ИИ-помощник');
 
   function createIcon(isChat) {
@@ -27,14 +27,16 @@
       '<span class="gw5__label" id="gw5-services-label"><strong>Услуги</strong><span class="gw5__description" id="gw5-services-description">Дополните проживание</span></span>' +
       '<a class="gw5__service-link" data-allow-nav href="' + servicesUrl + '" aria-label="Услуги отеля" aria-describedby="gw5-services-description">' + createIcon(false) + '</a>' +
     '</div>' +
-    '<button class="gw5__row gw5__chat" type="button" aria-controls="gw5-services-label gw5-chat-label" aria-expanded="false" aria-describedby="gw5-chat-description">' +
+    '<button class="gw5__row gw5__chat" type="button" aria-controls="gw5-services-label gw5-chat-label" aria-expanded="true" aria-describedby="gw5-chat-description">' +
       '<span class="gw5__label" id="gw5-chat-label"><strong>ИИ-помощник</strong><span class="gw5__description" id="gw5-chat-description">Помогу с бронью и другим</span></span>' + createIcon(true) +
     '</button>';
   document.body.appendChild(panel);
 
   var chat = panel.querySelector('.gw5__chat');
+  var initialCollapseTimer;
 
   function setCollapsed(collapsed) {
+    clearTimeout(initialCollapseTimer);
     panel.classList.toggle('is-collapsed', collapsed);
     chat.setAttribute('aria-expanded', String(!collapsed));
     chat.setAttribute('aria-label', collapsed ? 'ИИ-помощник — развернуть панель' : 'ИИ-помощник — свернуть панель');
@@ -62,5 +64,6 @@
       chat.focus({ preventScroll: true });
     }
   });
-  setCollapsed(true);
+  setCollapsed(false);
+  initialCollapseTimer = setTimeout(function () { setCollapsed(true); }, 5000);
 })();
